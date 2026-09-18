@@ -1,0 +1,65 @@
+Stonemark Proprietary License
+SPDX-License-Identifier: LicenseRef-Stonemark-Proprietary
+
+Copyright © 2026 Stonemark Infrastructure Assurance LLC. All rights reserved.
+
+1. NO LICENSE GRANTED
+
+   This software, its source code, documentation, data, designs, text, images and any
+   other material in this repository (together, the "Work") are the confidential and
+   proprietary property of Stonemark Infrastructure Assurance LLC ("Stonemark").
+
+   No licence, express or implied, is granted to any person. In particular, no right is
+   granted to use, copy, modify, merge, publish, distribute, sublicense, sell, host,
+   train a model on, or create derivative works from the Work.
+
+   Access to this repository, whether granted deliberately, by mistake, or through
+   public visibility, does not grant any right in the Work. Contributing to the Work
+   does not grant the contributor any right in it.
+
+2. PERMITTED USE BY AUTHORIZED PERSONS
+
+   A person who has signed a current written agreement with Stonemark that grants
+   access may use the Work only as that agreement allows, only for Stonemark's
+   business, and only for as long as the agreement remains in force. On termination,
+   that person must stop using the Work and must return or destroy every copy in their
+   possession, including copies held in third-party tools, local clones and backups.
+
+3. NO USE FOR MODEL TRAINING OR DATA MINING
+
+   The Work may not be used as training, fine-tuning, evaluation or retrieval data for
+   any machine-learning model, nor subjected to text or data mining, by any person
+   other than Stonemark. This paragraph is an express reservation of rights.
+
+4. THE DEMONSTRATION IS NOT AN ASSESSMENT
+
+   The Work includes a demonstration built on synthetic data. It is not an assessment,
+   attestation, certification, audit or opinion about any real network, site, carrier
+   or organisation, and no one may rely on it as one. See DEMO_TERMS.md.
+
+5. TRADEMARKS
+
+   No right is granted in Stonemark's names, marks, logos or the mason's mark. See
+   TRADEMARKS.md.
+
+6. NO WARRANTY
+
+   THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+   PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+7. LIMITATION OF LIABILITY
+
+   TO THE MAXIMUM EXTENT PERMITTED BY LAW, STONEMARK SHALL NOT BE LIABLE FOR ANY
+   CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE, ARISING
+   FROM, OUT OF OR IN CONNECTION WITH THE WORK OR ITS USE.
+
+8. ENFORCEMENT AND GOVERNING LAW
+
+   Stonemark reserves every right and remedy available to it, including injunctive
+   relief and remedies under trade-secret and copyright law. This licence is governed
+   by the laws of the State of Colorado, United States, without regard to its conflict
+   of laws rules.
+
+Contact: [PENDING: legal contact email] · Stonemark Infrastructure Assurance LLC,
+[PENDING: registered address].
