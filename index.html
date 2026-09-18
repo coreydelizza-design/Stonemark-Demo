@@ -1,0 +1,725 @@
+<!doctype html>
+<!--
+  Copyright © 2026 Stonemark Infrastructure Assurance LLC. All rights reserved.
+  Confidential and proprietary. No licence granted. See LICENSE.
+  Sample data. Not an assessment. See DEMO_DATA_NOTICE.md and DEMO_TERMS.md.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acme Corp — Portal · Stonemark demo</title>
+<meta name="description" content="Stonemark assurance platform demo: a sample engagement for a fictional client, on synthetic data.">
+<meta name="copyright" content="© 2026 Stonemark Infrastructure Assurance LLC">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Archivo:wght@600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#161917; --muted:#5f6660; --canvas:#f5f4f0; --surface:#ffffff; --line:#d9dad4;
+  --accent:#ef6b2e; --accent-pressed:#b74314; --accent-soft:#fff0e7;
+  --green:#22a060; --amber:#d69b20; --red:#d8513c;
+  --t-green:#ebf4ee; --t-amber:#f8f1e2; --t-red:#f8ece8; --t-grey:#efefeb;
+  --guide-bg:#101315; --guide-ink:#f5f4f0; --guide-muted:#aab1ab; --guide-line:#2a3033;
+  --shadow:0 1px 0 rgba(22,25,23,.04);
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --display:"Archivo","Inter",system-ui,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#eceee9; --muted:#9aa19b; --canvas:#101315; --surface:#171b1d; --line:#2a3033;
+    --accent-soft:#2a1a12;
+    --t-green:#162219; --t-amber:#241f14; --t-red:#271a17; --t-grey:#1d2123;
+    --guide-bg:#f5f4f0; --guide-ink:#161917; --guide-muted:#5f6660; --guide-line:#d9dad4;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#eceee9; --muted:#9aa19b; --canvas:#101315; --surface:#171b1d; --line:#2a3033;
+  --accent-soft:#2a1a12;
+  --t-green:#162219; --t-amber:#241f14; --t-red:#271a17; --t-grey:#1d2123;
+  --guide-bg:#f5f4f0; --guide-ink:#161917; --guide-muted:#5f6660; --guide-line:#d9dad4;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+img,svg{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* review ribbon — not part of the demo */
+.review{background:repeating-linear-gradient(135deg,var(--canvas) 0 10px,var(--line) 10px 11px);border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.review .wrap{padding-top:6px;padding-bottom:6px}
+
+/* demo banner */
+.demobar{background:var(--accent-soft);border-bottom:1px solid var(--line);font-size:13.5px}
+.demobar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.demobar strong{font-weight:600}
+.btn-quiet{background:none;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 11px;cursor:pointer;font-size:13px}
+.btn-quiet:hover{border-color:var(--muted)}
+
+/* top bar */
+.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:58px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.brand svg{width:26px;height:26px;flex:0 0 26px}
+.wordmark{font-weight:600;letter-spacing:.16em;font-size:13px}
+.divider{width:1px;height:22px;background:var(--line)}
+.eng{font-weight:600;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top .spacer{flex:1}
+.signout{white-space:nowrap;font-size:13.5px;color:var(--muted);background:none;border:0;cursor:pointer;padding:6px}
+.signout:hover{color:var(--ink)}
+
+/* section strip */
+.strip{background:var(--surface);border-bottom:1px solid var(--line)}
+.strip .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin:0;padding:0;list-style:none}
+.tabs::-webkit-scrollbar{display:none}
+@media (min-width:761px){.tabs{overflow:visible}}
+.tab-wrap{position:relative}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:12px 14px 11px;cursor:pointer;color:var(--muted);font-size:14.5px;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.publine{font-size:12.5px;color:var(--muted);padding-bottom:12px;white-space:nowrap}
+@media (max-width:760px){.strip .wrap{flex-direction:column;align-items:stretch;gap:0}.tabs{margin:0 -20px;padding:0 12px}.publine{padding:6px 0 10px;border-top:1px solid var(--line)}.eng{font-size:13.5px}.wordmark{display:none}.divider{display:none}}
+.tip{position:absolute;left:8px;top:calc(100% + 6px);z-index:40;width:max-content;max-width:260px;background:var(--guide-bg);color:var(--guide-ink);font-size:12.5px;line-height:1.4;padding:8px 10px;border-radius:8px;box-shadow:0 0 0 1.5px var(--canvas),0 8px 24px rgba(0,0,0,.28);opacity:0;pointer-events:none;transform:translateY(-2px);transition:opacity .12s,transform .12s}
+.tip b{display:block;font-weight:600;color:var(--accent);font-size:11px;letter-spacing:.04em;margin-bottom:2px}
+@media (hover:hover){
+  .tab-wrap:hover .tip,.tab-wrap:focus-within .tip{opacity:1;transform:none}
+}
+@media (hover:none){.tip{display:none}}
+.tab-wrap.tip-off .tip{opacity:0!important}
+@media (prefers-reduced-motion:reduce){.tip{transition:none}}
+
+/* guide banner */
+.guide{background:var(--guide-bg);color:var(--guide-ink);border-radius:12px;margin:18px 0 0;position:relative}
+.guide-head{display:flex;align-items:center;gap:10px;padding:11px 14px;flex-wrap:wrap}
+.guide-tag{font-size:11.5px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 8px}
+.guide-step{font-size:13px;color:var(--guide-muted)}
+.guide-title{font-weight:600;font-size:14px}
+.guide-head .spacer{flex:1}
+.gbtn{background:none;border:1px solid var(--guide-line);color:var(--guide-ink);border-radius:7px;padding:4px 10px;font-size:12.5px;cursor:pointer}
+.gbtn:hover{border-color:var(--guide-muted)}
+.gbtn[disabled]{opacity:.35;cursor:default}
+.guide-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:2px 14px 14px;border-top:1px solid var(--guide-line);padding-top:12px;margin:0 0}
+.guide-body h3{margin:0 0 3px;font-size:12px;font-weight:600;color:var(--guide-muted)}
+.guide-body p{margin:0;font-size:13.5px;line-height:1.45;max-width:46ch}
+.key{font-family:var(--mono);font-size:11.5px;color:var(--accent);margin-left:4px;white-space:nowrap}
+.guide.collapsed .guide-body{display:none}
+.guide-nav{display:flex;gap:6px}
+@media (max-width:760px){.guide-body{grid-template-columns:1fr;gap:10px}}
+
+/* page */
+main{padding-bottom:64px}
+.page-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:26px 0 14px;flex-wrap:wrap}
+h1{font-size:24px;line-height:1.2;margin:0;font-weight:600;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:14px;margin:4px 0 0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.grid-kpi{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi .label{font-size:12.5px;color:var(--muted)}
+.kpi .value{font-size:26px;font-weight:600;line-height:1.15;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .note{font-size:12.5px;color:var(--muted);margin-top:2px}
+.kpi.band-at-risk .value{color:var(--amber)}
+@media (max-width:900px){.grid-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi:first-child{grid-column:1/-1}}
+
+/* dot matrix */
+.matrix-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{background:var(--surface);border:0;padding:6px 11px;font-size:13px;cursor:pointer;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface);font-weight:600}
+.asat{font-size:12.5px;color:var(--muted)}
+.mrow{display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:start;padding:5px 0}
+.mlabel{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);text-align:right;padding-top:1px}
+.dots{display:flex;flex-wrap:wrap;gap:6px}
+.dot{width:14px;height:14px;border-radius:3px;border:0;padding:0;cursor:pointer;position:relative;transition:opacity .12s}
+.dot.ring{box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--ink)}
+.dot.faded{opacity:.2}
+.dot.hollow{background:transparent;border:1.5px solid var(--muted)}
+.dot.hatch{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.55) 0 2px,transparent 2px 4px)}
+@media (prefers-reduced-motion:reduce){.dot{transition:none}}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;align-items:center}
+.lg{display:inline-flex;align-items:center;gap:7px;background:none;border:1px solid transparent;border-radius:7px;padding:3px 7px;cursor:pointer;color:var(--ink)}
+.lg[aria-pressed="true"]{border-color:var(--ink)}
+.lg i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.lg-note{color:var(--muted);margin-left:auto;font-size:12.5px}
+.ringkey{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:12.5px}
+.ringkey i{width:10px;height:10px;border-radius:2px;background:var(--line);box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--ink)}
+.floattip{position:fixed;z-index:60;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:12.5px;line-height:1.4;box-shadow:0 6px 24px rgba(0,0,0,.12);pointer-events:none;max-width:250px;display:none}
+.floattip b{font-weight:600;font-size:13px}
+.floattip span{color:var(--muted)}
+
+/* site cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.card{text-align:left;background:var(--t-grey);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:12px;padding:13px 14px 12px;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-height:168px;position:relative}
+.card:hover{border-color:var(--muted)}
+.card.b-green{background:var(--t-green);border-left-color:var(--green)}
+.card.b-amber{background:var(--t-amber);border-left-color:var(--amber)}
+.card.b-red{background:var(--t-red);border-left-color:var(--red)}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pill{font-size:12px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:1px 8px;color:var(--muted);white-space:nowrap}
+.gapcount{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.gapcount b{font-size:17px;color:var(--ink);font-weight:600;margin-right:3px;font-variant-numeric:tabular-nums}
+.card-name{font-weight:600;font-size:15.5px;line-height:1.3}
+.arch{align-self:flex-start;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 6px;background:var(--surface)}
+.desc{font-size:13px;color:var(--muted)}
+.card-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;padding-top:6px}
+.card-foot .pct{font-variant-numeric:tabular-nums;white-space:nowrap}
+.sev{font-size:12px;font-weight:600;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.sev-critical{color:var(--red);border:1px solid var(--red)}
+.sev-high{color:var(--amber);border:1px solid var(--amber)}
+.glyph{width:18px;height:18px;color:var(--ink)}
+
+/* tables */
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{text-align:left;font-weight:600;font-size:12.5px;color:var(--muted);padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.state{display:inline-block;font-size:12px;border-radius:999px;padding:1px 8px;border:1px solid var(--line);white-space:nowrap;background:var(--surface)}
+.st-confirmed{border-color:var(--ink);font-weight:600}
+.st-suspected{border-style:dashed;border-color:var(--ink)}
+.st-unverified{color:var(--muted)}
+.st-cannot{color:var(--muted);border-style:dotted;border-color:var(--muted)}
+.st-clear{color:var(--green);border-color:var(--green)}
+.disp{font-size:13px;white-space:nowrap}
+.disp::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--muted)}
+.d-produced::before{background:var(--green)}
+.d-partial::before{background:var(--amber)}
+.d-noresp::before{background:transparent;border:1.5px solid var(--muted);width:8px;height:8px;box-sizing:border-box}
+.d-declined::before{background:var(--red)}
+.nc{color:var(--muted);font-style:italic}
+
+/* findings */
+.fgroup{margin:22px 0 10px;font-size:13px;color:var(--muted);font-weight:600}
+.finding{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px;display:grid;grid-template-columns:44px 1fr;gap:4px 14px}
+.fkey{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px}
+.fhead{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.ftitle{font-weight:600;font-size:16px;margin-right:4px}
+.finding p{margin:6px 0 0;max-width:72ch;color:var(--ink)}
+.fmeta{grid-column:2;font-size:13px;color:var(--muted);margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 18px}
+@media (max-width:560px){.finding{grid-template-columns:1fr}.fmeta{grid-column:1}}
+
+/* reports */
+.subtabs{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
+.subtabs button{background:none;border:0;padding:7px 14px;font-size:13.5px;cursor:pointer;color:var(--muted)}
+.subtabs button[aria-current="page"]{background:var(--ink);color:var(--surface);font-weight:600}
+.report{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:34px 40px;font-family:var(--serif);font-size:16.5px;line-height:1.62}
+.report h2{font-family:var(--display);font-weight:600;letter-spacing:-.02em;font-size:30px;line-height:1.15;margin:0 0 6px}
+.report h3{font-family:var(--display);font-weight:600;font-size:18px;margin:30px 0 8px;letter-spacing:-.01em}
+.report .mast{font-family:var(--sans);font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:24px}
+.report p{max-width:68ch;margin:0 0 12px}
+.assertion{font-size:21px;line-height:1.45;border-left:3px solid var(--ink);padding-left:18px;margin:6px 0 10px;max-width:60ch}
+.report table{font-family:var(--sans);font-size:14px}
+.report ol{padding-left:22px;max-width:68ch}
+.report li{margin-bottom:12px}
+.report li b{font-family:var(--display);font-weight:600}
+.foot{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:14px;max-width:80ch}
+@media (max-width:640px){.report{padding:22px 18px;font-size:16px}.report h2{font-size:24px}.assertion{font-size:18px}}
+.money{font-variant-numeric:tabular-nums;white-space:nowrap}
+.declared{display:block;font-size:11.5px;color:var(--muted)}
+
+/* site detail */
+.back{background:none;border:0;color:var(--accent);cursor:pointer;padding:0;font-size:14px;margin-top:22px}
+.hero-card{display:grid;grid-template-columns:1fr auto;gap:10px 24px;padding:20px 22px;border-radius:14px;border:1px solid var(--line);border-left:6px solid var(--green);background:var(--t-green);margin:12px 0 16px}
+.hero-card h1{font-size:26px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.hero-num{text-align:right}
+.hero-num .big{font-size:34px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.hero-num .lbl{font-size:12.5px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:760px){.two{grid-template-columns:1fr}.hero-card{grid-template-columns:1fr}.hero-num{text-align:left}}
+.panel h2{font-size:15px;margin:0 0 10px;font-weight:600}
+.empty{color:var(--muted);font-size:14px;margin:0}
+.readonly{font-size:12.5px;color:var(--muted)}
+
+/* decisions */
+.dec{display:grid;grid-template-columns:44px 1fr auto;gap:4px 14px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line)}
+.dec:last-child{border-bottom:0}
+.dec .ans{font-size:13px;color:var(--muted);margin-top:4px}
+.dstate{font-size:12.5px;font-weight:600;border-radius:999px;padding:2px 9px;white-space:nowrap;border:1px solid var(--line)}
+.ds-approved{color:var(--green);border-color:var(--green)}
+.ds-accepted{color:var(--ink);border-color:var(--ink)}
+.ds-open{color:var(--muted)}
+@media (max-width:560px){.dec{grid-template-columns:1fr}}
+
+@media print{
+  .review,.demobar,.guide,.strip .tabs,.signout,.floattip{display:none!important}
+  body{background:#fff}
+  .report,.panel,.kpi,.finding{border-color:#bbb}
+}
+</style>
+</head>
+<body>
+<div class="demobar"><div class="wrap">
+  <span><strong>Acme Corp — sample engagement</strong> · Synthetic data</span>
+  <span style="display:flex;gap:8px">
+    <button class="btn-quiet" id="showGuide" type="button">Show guide</button>
+    <button class="btn-quiet" id="reset" type="button">Reset</button>
+  </span>
+</div></div>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#status" aria-label="Stonemark — Acme Corp portal status">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#ef6b2e" stroke-width="4" stroke-linecap="square" fill="none"><line x1="8" y1="32" x2="16" y2="8"/><line x1="17" y1="32" x2="25" y2="8"/><line x1="26" y1="32" x2="34" y2="8"/></g></svg>
+    <span class="wordmark">STONEMARK</span>
+  </a>
+  <span class="divider" aria-hidden="true"></span>
+  <span class="eng">Acme Corp — Portal</span>
+  <span class="spacer"></span>
+  <button class="signout" type="button">Exit demo</button>
+</div></header>
+
+<nav class="strip" aria-label="Portal sections"><div class="wrap">
+  <ul class="tabs" id="tabs"></ul>
+  <div class="publine" id="publine"></div>
+</div></nav>
+
+<main><div class="wrap" id="app"></div></main>
+<footer style="border-top:1px solid var(--line);background:var(--surface)"><div class="wrap" style="padding:14px 20px;font-size:12.5px;color:var(--muted)">© 2026 Stonemark Infrastructure Assurance LLC · Sample data for a fictional client · Not an assessment, attestation or audit, and not to be relied on</div></footer>
+<div class="floattip" id="floattip" role="tooltip"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- dates, anchored to now (DD3) ---------- */
+const NOW = new Date();
+const addDays = (d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const addMonths = (d,n)=>{const x=new Date(d);x.setMonth(x.getMonth()+n);return x};
+const fmt = d=>d.toLocaleDateString("en-US",{day:"numeric",month:"short",year:"numeric"});
+const fmtShort = d=>d.toLocaleDateString("en-US",{day:"numeric",month:"short"});
+const PUB = addDays(NOW,-14);
+const REVIEW = addMonths(NOW,11);
+
+/* ---------- guide copy (pack §6, verbatim) ---------- */
+const TABS = [
+  {id:"status",label:"Status",tip:"Where Acme's assurance stands, and which sites share a point of failure."},
+  {id:"sites",label:"Sites",tip:"Every Acme site, and how much of its claimed diversity is proven."},
+  {id:"findings",label:"Findings",tip:"What the assessment found, graded by the evidence behind each finding."},
+  {id:"reports",label:"Reports",tip:"The executive register and the board paper."},
+  {id:"documents",label:"Documents",tip:"The authorizations Acme signed and the records each carrier returned."},
+  {id:"decisions",label:"Decisions",tip:"What Acme has approved, accepted or left open against each finding."}
+];
+const STOPS = [
+  {route:"status",title:"Status",what:"Acme's assessment as published, with the dot matrix showing which sites would lose connectivity together if one shared element failed.",did:"Under Acme's authorization, collected carrier, access-provider and facility records, and checked every claimed diverse path against them.",look:"The five sites in one metro that all home to a single serving office.",keys:["F2"]},
+  {route:"sites",title:"Sites",what:"One card per site, showing how far that site's diversity is proven, from claimed to defensible.",did:"Graded each site by the strongest evidence behind it: carrier records, Acme's own declarations, or nothing yet.",look:"Headquarters, where two carriers turn out to rely on one access provider.",keys:["F1"]},
+  {route:"site/tol",title:"Site detail",what:"The circuits, carriers and records behind one site's grade.",did:"Compared each carrier's layout records with the diversity Acme ordered.",look:"The dark-fiber backup running in the same cable as the lit primary.",keys:["F3"]},
+  {route:"findings",title:"Findings",what:"Every finding, graded confirmed, suspected, unverified, or cannot be established.",did:"Kept what records prove separate from what is claimed or unknown, and never presented an unknown as safe.",look:"The replication paths whose diversity cannot be established, because one carrier withheld route records.",keys:["F6"]},
+  {route:"reports/register",title:"Executive register",what:"Each exposure alongside what Acme says an outage of that element would cost.",did:"Used Acme's own declared cost ranges, marked as declared, and estimated no probability or likelihood.",look:"The five-site serving-office exposure, and where its cost figure comes from.",keys:["F2"]},
+  {route:"reports/board",title:"Board paper",what:"One assertion, three findings, the decisions the board is asked to take, and the cost to close.",did:"Stated exposure, not odds, and declined to present a return calculation.",look:"The decisions table, and the replication finding the board is asked to accept until renewal.",keys:["F6"]},
+  {route:"documents",title:"Documents",what:"The Letters of Authorization Acme signed, and what each carrier and facility operator produced, partly produced, withheld or left unanswered.",did:"Tracked every records request to its outcome, so each gap has a named reason.",look:"The colocation operator's records request that is still unanswered.",keys:["F4"]},
+  {route:"decisions",title:"Decisions",what:"Acme's decisions against each finding: approved, risk accepted, or open.",did:"Recorded each decision against the finding it answers, without changing any evidence grade.",look:"The approved fix at headquarters and the still-open second entrance at the secondary data centre.",keys:["A1","A2"]}
+];
+
+/* ---------- the Acme seed (pack §3, sample data) ---------- */
+const ARCH = ["Data centre","Headquarters","Regional office","Manufacturing plant","Distribution centre","Branch","Contact centre"];
+const P="Produced",PT="Partly produced",NR="No response",DC="Declined under contract",CF="Configuration confirmed";
+const sepPair=(a1,a2,e1,e2,pop1,pop2)=>[
+  {role:"Primary",carrier:"Corvane Networks",access:a1||"Corvane Networks",medium:"Lit fiber",entrance:e1||"East entrance",pop:pop1||"Corvane metro POP",ev:P},
+  {role:"Backup",carrier:"Tessaro Communications",access:a2||"Tessaro Communications",medium:"Lit fiber",entrance:e2||"West entrance",pop:pop2||"Tessaro metro POP",ev:P}];
+const S = [
+ {id:"dal",name:"Dallas primary data centre",arch:0,city:"Dallas, TX",pct:88,gaps:1,sev:null,f:["F8","F6"],
+  circuits:sepPair(null,null,"North entrance vault","South entrance vault","Corvane Dallas POP","Tessaro Dallas POP").concat([
+  {role:"Replication A",carrier:"Corvane Networks",access:"Corvane Networks",medium:"Wavelength",entrance:"North entrance vault",pop:"Corvane Dallas POP",ev:P},
+  {role:"Replication B",carrier:"Pellam Transit",access:"Pellam Transit",medium:"Wavelength",entrance:"South entrance vault",pop:"Route records withheld",ev:DC}]),
+  gapList:["Route records for replication B (Pellam Transit)"]},
+ {id:"chi",name:"Chicago secondary data centre",arch:0,city:"Chicago, IL",pct:64,gaps:2,sev:"high",f:["F4","F6"],
+  circuits:[
+   {role:"Primary",carrier:"Corvane Networks",access:"Corvane Networks",medium:"Lit fiber",entrance:"Entrance vault A",pop:"Corvane Chicago POP",ev:P},
+   {role:"Backup",carrier:"Tessaro Communications",access:"Tessaro Communications",medium:"Lit fiber",entrance:"Entrance vault A",pop:"Tessaro Chicago POP",ev:P},
+   {role:"Replication A",carrier:"Corvane Networks",access:"Corvane Networks",medium:"Wavelength",entrance:"Entrance vault A",pop:"Corvane Chicago POP",ev:P},
+   {role:"Replication B",carrier:"Pellam Transit",access:"Pellam Transit",medium:"Wavelength",entrance:"Entrance vault A",pop:"Route records withheld",ev:DC}],
+  gapList:["Facility entrance records (Ashby Colocation)","Route records for replication B (Pellam Transit)"]},
+ {id:"cmh",name:"Columbus headquarters",arch:1,city:"Columbus, OH",pct:88,gaps:0,sev:"critical",f:["F1"],
+  circuits:[
+   {role:"Primary",carrier:"Tessaro Communications",access:"Carrow Access",medium:"Lit fiber",entrance:"Basement conduit 1",pop:"Tessaro Columbus POP",ev:P},
+   {role:"Backup",carrier:"Corvane Networks",access:"Carrow Access (off-net tail)",medium:"Lit fiber",entrance:"Basement conduit 1",pop:"Corvane Columbus POP",ev:P}],gapList:[]},
+ ...["Atlanta","Phoenix","Charlotte"].map((c,i)=>({id:["atl","phx","clt"][i],name:c+" regional office",arch:2,city:[ "Atlanta, GA","Phoenix, AZ","Charlotte, NC"][i],pct:[41,38,45][i],gaps:1,sev:null,f:["F5"],
+  circuits:[
+   {role:"Primary",carrier:"Tessaro Communications",access:"Tessaro Communications",medium:"Lit fiber",entrance:"Riser B",pop:"Tessaro metro POP",ev:P},
+   {role:"Backup",carrier:"Oriel Fibre",access:"Not in records",medium:"Lit fiber",entrance:"Not in records",pop:"Not in records",ev:NR}],
+  gapList:["Backup circuit records (Oriel Fibre)"]})),
+ {id:"tol",name:"Toledo plant",arch:3,city:"Toledo, OH",pct:90,gaps:0,sev:"high",f:["F3"],
+  circuits:[
+   {role:"Primary",carrier:"Corvane Networks",access:"Corvane Networks",medium:"Lit fiber · cable TOL-114",entrance:"North conduit",pop:"Corvane Toledo POP",ev:P},
+   {role:"Backup",carrier:"Harrow Fiber",access:"Harrow Fiber",medium:"Dark fiber IRU · cable TOL-114 to splice point SP-04",entrance:"North conduit",pop:"Harrow Toledo POP",ev:P}],gapList:[]},
+ {id:"gsp",name:"Greenville plant",arch:3,city:"Greenville, SC",pct:84,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
+ {id:"ict",name:"Wichita plant",arch:3,city:"Wichita, KS",pct:86,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
+ {id:"fwa",name:"Fort Wayne plant",arch:3,city:"Fort Wayne, IN",pct:81,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
+ ...["North","East","South"].map((n,i)=>({id:"mem"+i,name:"Memphis "+n+" distribution centre",arch:4,city:"Memphis, TN",pct:[85,83,82][i],gaps:0,sev:"critical",f:["F2"],
+  circuits:[
+   {role:"Primary",carrier:"Tessaro Communications",access:"Northvale Access",medium:"Lit fiber",entrance:"Dock-side entrance",pop:"Northvale Memphis Central serving office",ev:P},
+   {role:"Backup",carrier:"Corvane Networks",access:"Northvale Access",medium:"Lit fiber",entrance:"Yard entrance",pop:"Northvale Memphis Central serving office",ev:P}],gapList:[]})),
+ {id:"rno",name:"Reno distribution centre",arch:4,city:"Reno, NV",pct:87,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
+ {id:"abe",name:"Allentown distribution centre",arch:4,city:"Allentown, PA",pct:89,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
+ ...[["pop","Memphis Poplar Avenue branch","Memphis, TN",58],["sha","Southaven branch","Southaven, MS",55]].map(a=>({id:a[0],name:a[1],arch:5,city:a[2],pct:a[3],gaps:1,sev:"critical",suspected:true,f:["F2"],
+  circuits:[
+   {role:"Primary",carrier:"Tessaro Communications",access:"Northvale Access",medium:"Lit fiber",entrance:"Street-side entrance",pop:"Northvale Memphis Central serving office",ev:P},
+   {role:"Backup",carrier:"Corvane Networks",access:"Northvale Access",medium:"Lit fiber",entrance:"Not in records",pop:"Not yet produced",ev:PT}],
+  gapList:["Backup access records (Northvale Access)"]})),
+ ...[["tul","Tulsa branch","Tulsa, OK",82],["oma","Omaha branch","Omaha, NE",80],["boi","Boise branch","Boise, ID",81],["alb","Albany branch","Albany, NY",83]].map(a=>({id:a[0],name:a[1],arch:5,city:a[2],pct:a[3],gaps:0,sev:null,f:["F7"],
+  circuits:[
+   {role:"Primary",carrier:"Tessaro Communications",access:"Tessaro Communications",medium:"Lit fiber",entrance:"Main entrance",pop:"Tessaro metro POP",ev:P},
+   {role:"Backup",carrier:"Marlow Mobile",access:"Cellular",medium:"LTE",entrance:"Not applicable",pop:"Not assessed: scope is failover and HA configuration only",ev:CF}],gapList:[]})),
+ {id:"tpa",name:"Tampa contact centre",arch:6,city:"Tampa, FL",pct:84,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]}
+];
+
+const FINDINGS = {
+ F2:{title:"One serving office under five \u201cdiverse\u201d sites",state:["confirmed","Confirmed at 3 sites · suspected at 2"],sev:"critical",sites:["mem0","mem1","mem2","pop","sha"],basis:"Northvale Access records, partly produced",
+   text:"Every access circuit at the three Memphis distribution centres and two Memphis-area branches homes to one Northvale Access serving office. If that office is lost, primary and backup go down together at all five sites."},
+ F1:{title:"Two carriers, one access provider at headquarters",state:["confirmed","Confirmed"],sev:"critical",sites:["cmh"],basis:"Tessaro and Corvane layout records",
+   text:"The Corvane backup is an off-net tail from Carrow Access, the same access provider as the Tessaro primary. Both circuits enter through basement conduit 1."},
+ F3:{title:"Lit and dark fiber in one cable at the Toledo plant",state:["confirmed","Confirmed"],sev:"high",sites:["tol"],basis:"Corvane and Harrow Fiber layout records",
+   text:"The dark-fiber backup runs in the same cable as the lit primary, from the plant to the first splice point."},
+ F4:{title:"Single entrance at the secondary data centre",state:["suspected","Suspected"],sev:"high",sites:["chi"],basis:"Carrier records; facility records outstanding",
+   text:"Carrier records show both carriers entering the Ashby Colocation facility through one entrance vault. The facility's second entrance was never ordered. Ashby has not answered the records request."},
+ F6:{title:"Replication diversity cannot be established",state:["cannot","Cannot be established"],sev:null,sites:["dal","chi"],basis:"Corvane produced; Pellam Transit declined under contract",
+   text:"Corvane Networks produced route records for its replication wavelength. Pellam Transit declined to produce route records under its contract terms. Whether the two replication paths are diverse cannot be established until that agreement renews. This finding does not say the paths converge."},
+ F5:{title:"Carrier consolidation at the regional offices",state:["unverified","Unverified"],sev:null,sites:["atl","phx","clt"],basis:"Oriel Fibre has not responded",
+   text:"Primary and backup were ordered from Tessaro Communications and Oriel Fibre, which have since combined through acquisition. Whether Oriel's metro network has been folded into Tessaro's is not yet known."},
+ F7:{title:"LTE failover and HA configuration confirmed",state:["clear","Configuration confirmed"],sev:null,sites:["tul","oma","boi","alb"],basis:"Acme's configuration records",
+   text:"Acme's configuration records confirm the LTE backup is set to take over and high availability is configured. The scope is confirmation only: the engagement makes no claim about whether the cellular path is physically diverse."},
+ F8:{title:"Assessed clear",state:["clear","Assessed clear"],sev:null,sites:["dal","gsp","ict","fwa","rno","abe","tpa"],basis:"Carrier layout records",
+   text:"Separate entrances, separate serving offices and separate POPs, all documented in carrier records."}
+};
+const EXPOSURE_ORDER=["F2","F1","F3","F4","F6","F5"], CONFIRM_ORDER=["F7","F8"];
+
+const DECISIONS = [
+ {id:"A1",ans:"F1",text:"Order headquarters' backup from an access provider independent of the primary's, through a separate entrance.",state:"Approved",cls:"approved",when:addDays(PUB,5)},
+ {id:"A2",ans:"F4",text:"Order the colocation facility's second entrance for the second carrier.",state:"Open, awaiting a quote",cls:"open",when:addDays(PUB,5)},
+ {id:"A3",ans:"F6",text:"Accept that the replication pair's diversity cannot be established until the agreement renews, and make route records a renewal requirement.",state:"Risk accepted",cls:"accepted",when:addDays(PUB,8)},
+ {id:"A4",ans:"F2",text:"Review access for the five sites that home to one serving office.",state:"Open",cls:"open",when:addDays(PUB,8)}
+];
+
+const REQUESTS = [
+ {who:"Corvane Networks",scope:"Access and transit",covers:"Data centres, plants, distribution centres, headquarters backup",d:"produced",label:P},
+ {who:"Tessaro Communications",scope:"Access",covers:"Headquarters primary, regional offices, branches, data centres",d:"produced",label:P},
+ {who:"Carrow Access",scope:"Access",covers:"Columbus headquarters",d:"produced",label:P},
+ {who:"Harrow Fiber",scope:"Access",covers:"Toledo plant backup",d:"produced",label:P},
+ {who:"Northvale Access",scope:"Access",covers:"Five Memphis-area sites",d:"partial",label:"Partly produced (3 of 5 sites)"},
+ {who:"Oriel Fibre",scope:"Access and transit",covers:"Regional offices backup",d:"noresp",label:NR},
+ {who:"Ashby Colocation",scope:"Facility",covers:"Chicago secondary data centre",d:"noresp",label:NR},
+ {who:"Pellam Transit",scope:"Transit route records",covers:"Data-centre replication B",d:"declined",label:DC}
+];
+
+/* ---------- derived (the build computes these in domain functions) ---------- */
+const band = s => s.pct===0?"grey":s.pct<50?"red":s.pct<80?"amber":"green";
+const assur = s => (s.sev==="critical"&&!s.suspected)?"Critical":(s.sev||band(s)==="red")?"At risk":s.pct>=85?"Excellent":"Good";
+const byId = Object.fromEntries(S.map(s=>[s.id,s]));
+const esc = t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const statePill = s=>band(s)==="green"?("Attested · "+fmtShort(PUB)):band(s)==="grey"?"Not assessed":"In assessment";
+const carriersOf = s=>[...new Set(s.circuits.map(c=>c.carrier.split(" ")[0]))].join(", ");
+
+/* ---------- session state (try/catch per authoring rules) ---------- */
+const store = {
+  get(k,d){try{const v=sessionStorage.getItem("acme-demo:"+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{sessionStorage.setItem("acme-demo:"+k,JSON.stringify(v))}catch(e){}}
+};
+let guideHidden = store.get("guideHidden",false);
+let collapsed = store.get("collapsed",{});
+let lens = "completeness", legendFilter = null;
+
+/* ---------- tabs with hover-overs ---------- */
+const tabsEl = document.getElementById("tabs");
+tabsEl.innerHTML = TABS.map(t=>`<li class="tab-wrap" data-tab="${t.id}">
+  <button class="tab" type="button" data-go="${t.id}" aria-describedby="tip-${t.id}">${t.label}</button>
+  <span class="tip" role="tooltip" id="tip-${t.id}"><b>Guide</b>${esc(t.tip)}</span></li>`).join("");
+tabsEl.addEventListener("keydown",e=>{ if(e.key==="Escape"){const w=e.target.closest(".tab-wrap"); if(w) w.classList.add("tip-off");}});
+tabsEl.addEventListener("focusout",e=>{const w=e.target.closest(".tab-wrap"); if(w) w.classList.remove("tip-off");});
+tabsEl.addEventListener("mouseleave",()=>tabsEl.querySelectorAll(".tip-off").forEach(w=>w.classList.remove("tip-off")));
+document.getElementById("publine").textContent = "Published "+fmt(PUB)+" · next review "+REVIEW.toLocaleDateString("en-US",{month:"short",year:"numeric"});
+
+/* ---------- guide banner ---------- */
+function guide(route){
+  const i = STOPS.findIndex(s=>s.route===route);
+  if(i<0||guideHidden) return "";
+  const s = STOPS[i], c = (route in collapsed) ? !!collapsed[route] : window.matchMedia("(max-width:760px)").matches;
+  return `<section class="guide ${c?"collapsed":""}" aria-label="Demo guide, step ${i+1} of 8">
+    <div class="guide-head">
+      <span class="guide-tag">Guide</span>
+      <span class="guide-step">Step ${i+1} of 8</span>
+      <span class="guide-title">${esc(s.title)}</span>
+      <span class="spacer"></span>
+      <span class="guide-nav">
+        <button class="gbtn" type="button" data-go="${i>0?STOPS[i-1].route:""}" ${i===0?"disabled":""}>Previous</button>
+        <button class="gbtn" type="button" data-go="${i<7?STOPS[i+1].route:""}" ${i===7?"disabled":""}>Next</button>
+        <button class="gbtn" type="button" data-collapse="${route}" aria-expanded="${!c}">${c?"Expand":"Collapse"}</button>
+        <button class="gbtn" type="button" data-hideguide>Hide guide</button>
+      </span>
+    </div>
+    <div class="guide-body">
+      <div><h3>What you're looking at</h3><p>${esc(s.what)}</p></div>
+      <div><h3>What Stonemark did</h3><p>${esc(s.did)}</p></div>
+      <div><h3>Look for</h3><p>${esc(s.look)}${s.keys.map(k=>`<span class="key">[${k}]</span>`).join("")}</p></div>
+    </div></section>`;
+}
+
+/* ---------- views ---------- */
+const glyph = b=>{const n={green:3,amber:2,red:1,grey:0}[b];
+  return `<svg class="glyph" viewBox="0 0 40 40" aria-hidden="true"><g stroke="currentColor" stroke-width="4" stroke-linecap="square">${[0,1,2].map(k=>`<line x1="${8+9*k}" y1="32" x2="${16+9*k}" y2="8" opacity="${k<n?1:.15}"/>`).join("")}</g></svg>`};
+
+function card(s){
+  const b=band(s);
+  return `<button class="card b-${b}" type="button" data-go="site/${s.id}" aria-label="${esc(s.name)}, ${s.pct}% evidenced, ${s.gaps} open gaps${s.sev?", 1 "+s.sev+" risk":""}">
+    <span class="card-top"><span class="pill">${statePill(s)}</span><span class="gapcount"><b>${s.gaps}</b>open ${s.gaps===1?"gap":"gaps"}</span></span>
+    <span class="card-name">${esc(s.name)}</span>
+    <span class="arch">${ARCH[s.arch]}</span>
+    <span class="desc">${esc(s.city)} · ${esc(carriersOf(s))} · ${s.circuits.length} circuits</span>
+    <span class="card-foot"><span class="pct">${s.pct}% evidenced</span>${s.sev?`<span class="sev sev-${s.sev}">1 ${s.sev}${s.suspected?" (suspected)":""}</span>`:glyph(b)}</span>
+  </button>`;
+}
+
+function viewStatus(){
+  const avg = Math.round(S.reduce((a,s)=>a+s.pct,0)/S.length);
+  const publishable = S.filter(s=>band(s)==="green").length;
+  const crit = EXPOSURE_ORDER.filter(k=>FINDINGS[k].sev==="critical").length;
+  return guide("status")+`
+  <div class="page-head"><div><h1>Assurance at publication</h1><p class="sub">Acme's network diversity assessment as published on ${fmt(PUB)}. Nothing on this page changes until Stonemark publishes again.</p></div></div>
+  <div class="grid-kpi">
+    <div class="kpi band-at-risk"><div class="label">Portfolio assurance</div><div class="value">At risk</div><div class="note">Capped by ${crit} open critical risks</div></div>
+    <div class="kpi"><div class="label">Sites assessed</div><div class="value">${S.length} of ${S.length}</div></div>
+    <div class="kpi"><div class="label">Publishable</div><div class="value">${publishable}</div><div class="note">Defensible evidence</div></div>
+    <div class="kpi"><div class="label">Evidence completeness</div><div class="value">${avg}%</div></div>
+    <div class="kpi"><div class="label">Open critical risks</div><div class="value">${crit}</div><div class="note">Across ${EXPOSURE_ORDER.filter(k=>FINDINGS[k].sev==="critical").reduce((a,k)=>a+FINDINGS[k].sites.length,0)} sites</div></div>
+  </div>
+  <section class="panel" aria-label="Dot matrix">${matrix(avg)}</section>`;
+}
+
+const COMPLETENESS = [["green","Defensible","var(--green)",""],["amber","Partial","var(--amber)",""],["red","Thin","var(--red)","hatch"],["grey","Not assessed","transparent","hollow"]];
+const ASSURANCE = [["Excellent","Excellent","var(--green)"],["Good","Good","color-mix(in srgb,var(--green) 50%,var(--surface))"],["At risk","At risk","var(--amber)"],["Critical","Critical","var(--red)"]];
+
+function matrix(avg){
+  const key = s=>lens==="completeness"?band(s):assur(s);
+  const order = {red:0,amber:1,green:2,grey:3};
+  const rows = ARCH.map((a,ai)=>({a,sites:S.filter(s=>s.arch===ai).sort((x,y)=>lens==="completeness"?(order[band(x)]-order[band(y)]||x.pct-y.pct):(x.pct-y.pct))})).filter(r=>r.sites.length);
+  const defs = lens==="completeness"?COMPLETENESS:ASSURANCE;
+  const counts = Object.fromEntries(defs.map(d=>[d[0],S.filter(s=>key(s)===d[0]).length]));
+  const dotStyle = s=>{const d=defs.find(x=>x[0]===key(s)); return {bg:d[2],cls:(d[3]||"")};};
+  return `<div class="matrix-top">
+     <div class="seg" role="group" aria-label="Dot matrix lens">
+       <button type="button" data-lens="completeness" aria-pressed="${lens==="completeness"}">Evidence completeness</button>
+       <button type="button" data-lens="assurance" aria-pressed="${lens==="assurance"}">Assurance band</button>
+     </div>
+     <span class="asat">Point-in-time ${lens==="completeness"?"evidence completeness":"assurance"} · as at ${fmt(PUB)}</span>
+   </div>
+   ${rows.map(r=>`<div class="mrow"><div class="mlabel">${r.a}</div><div class="dots" role="group" aria-label="${r.a}">${r.sites.map(s=>{const d=dotStyle(s);const faded=legendFilter&&key(s)!==legendFilter;
+      return `<button type="button" class="dot ${d.cls} ${s.sev?"ring":""} ${faded?"faded":""}" style="background-color:${d.bg}" data-go="site/${s.id}" data-dot="${s.id}" aria-label="${esc(s.name)}, ${ARCH[s.arch]}, ${s.pct}% evidenced, ${lens==="completeness"?defs.find(x=>x[0]===band(s))[1]:assur(s)}, ${s.gaps} open gaps${s.sev?", 1 open "+s.sev+" risk":""}"></button>`}).join("")}</div></div>`).join("")}
+   <div class="legend">
+     ${defs.filter(d=>counts[d[0]]>0).map(d=>`<button type="button" class="lg" data-legend="${d[0]}" aria-pressed="${legendFilter===d[0]}"><i class="${d[3]||""} ${d[3]==="hollow"?"dot hollow":""}" style="background-color:${d[2]}"></i>${d[1]} ${counts[d[0]]}</button>`).join("")}
+     <span class="ringkey"><i></i>Open critical or high risk</span>
+     ${lens==="completeness"?`<span class="lg-note">Portfolio evidence completeness ${avg}%</span>`:""}
+   </div>`;
+}
+
+function viewSites(){
+  const sorted = S.slice().sort((a,b)=>({red:0,amber:1,green:2,grey:3}[band(a)]-{red:0,amber:1,green:2,grey:3}[band(b)])||a.arch-b.arch);
+  return guide("sites")+`
+  <div class="page-head"><div><h1>Sites</h1><p class="sub">${S.length} sites, as published on ${fmt(PUB)}. Colour shows how much is proven, not how risky a site is; risk is the chip.</p></div><span class="readonly">Read-only</span></div>
+  <div class="cards">${sorted.map(card).join("")}</div>`;
+}
+
+function evCell(ev){
+  const m={[P]:"d-produced",[PT]:"d-partial",[NR]:"d-noresp",[DC]:"d-declined",[CF]:"d-produced"}[ev]||"";
+  return `<span class="disp ${m}">${esc(ev)}</span>`;
+}
+
+function viewSite(id){
+  const s = byId[id]; if(!s) return viewSites();
+  const b = band(s), bc={green:"var(--green)",amber:"var(--amber)",red:"var(--red)",grey:"var(--muted)"}[b], bt={green:"var(--t-green)",amber:"var(--t-amber)",red:"var(--t-red)",grey:"var(--t-grey)"}[b];
+  const fs = s.f.map(k=>[k,FINDINGS[k]]);
+  return guide("site/"+id)+`
+  <button class="back" type="button" data-go="sites">Back to sites</button>
+  <section class="hero-card" style="border-left-color:${bc};background:${bt}">
+    <div>
+      <span class="pill">${statePill(s)}</span>
+      <h1 style="margin-top:8px">${esc(s.name)}</h1>
+      <div class="hero-meta"><span class="arch">${ARCH[s.arch]}</span><span class="desc">${esc(s.city)} · ${esc(carriersOf(s))} · ${s.circuits.length} circuits</span>${s.sev?`<span class="sev sev-${s.sev}">1 ${s.sev}${s.suspected?" (suspected)":""}</span>`:""}</div>
+    </div>
+    <div class="hero-num"><div class="big">${s.pct}%</div><div class="lbl">evidenced</div><div class="big" style="font-size:22px;margin-top:10px">${s.gaps}</div><div class="lbl">open ${s.gaps===1?"gap":"gaps"}</div></div>
+  </section>
+  <section class="panel"><h2>Circuits</h2>
+    <div class="tscroll"><table><thead><tr><th>Circuit</th><th>Carrier</th><th>Access provider</th><th>Medium</th><th>Building entrance</th><th>POP / serving office</th><th>Records</th></tr></thead>
+    <tbody>${s.circuits.map(c=>`<tr><td>${esc(c.role)}</td><td>${esc(c.carrier)}</td><td>${esc(c.access)}</td><td>${esc(c.medium)}</td><td>${esc(c.entrance)}</td><td>${esc(c.pop)}</td><td>${evCell(c.ev)}</td></tr>`).join("")}</tbody></table></div>
+  </section>
+  <div class="two">
+    <section class="panel"><h2>Findings at this site</h2>${fs.map(([k,f])=>`<p style="margin:0 0 10px"><span class="key" style="margin:0 6px 0 0">${k}</span><b style="font-weight:600">${esc(f.title)}</b> <span class="state st-${f.state[0]}">${esc(f.state[1])}</span></p>`).join("")}</section>
+    <section class="panel"><h2>Open gaps</h2>${s.gapList.length?`<ul style="margin:0;padding-left:18px">${s.gapList.map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`:`<p class="empty">No open gaps. Every circuit here is backed by produced records.</p>`}</section>
+  </div>`;
+}
+
+function findingBlock(k){
+  const f = FINDINGS[k];
+  const names = f.sites.map(id=>byId[id].name);
+  return `<article class="finding" id="finding-${k}">
+    <div class="fkey">${k}</div>
+    <div>
+      <div class="fhead"><span class="ftitle">${esc(f.title)}</span><span class="state st-${f.state[0]}">${esc(f.state[1])}</span>${f.sev?`<span class="sev sev-${f.sev}">${f.sev[0].toUpperCase()+f.sev.slice(1)}</span>`:""}</div>
+      <p>${esc(f.text)}</p>
+    </div>
+    <div class="fmeta"><span>${names.length===1?esc(names[0]):names.length+" sites: "+esc(names.join(", "))}</span><span>Basis: ${esc(f.basis)}</span></div>
+  </article>`;
+}
+
+function viewFindings(){
+  return guide("findings")+`
+  <div class="page-head"><div><h1>Findings</h1><p class="sub">Graded by the evidence behind each one. An unknown is shown as unknown, never as safe.</p></div></div>
+  <div class="fgroup">Exposures</div>${EXPOSURE_ORDER.map(findingBlock).join("")}
+  <div class="fgroup">Confirmations</div>${CONFIRM_ORDER.map(findingBlock).join("")}`;
+}
+
+const REGISTER = [
+ {k:"F2",cond:"If the Northvale Memphis Central serving office is lost",cost:"$210k–$340k per day",close:null,closeNote:"Not computable: review open (A4)"},
+ {k:"F1",cond:"If basement conduit 1 or Carrow Access's local plant is lost",cost:"$60k–$95k per day",close:"$40k–$55k",closeNote:"Declared by Acme (A1 approved)"},
+ {k:"F3",cond:"If cable TOL-114 is cut before splice point SP-04",cost:"$45k–$70k per day",close:null,closeNote:"Not computable: no decision recorded"},
+ {k:"F4",cond:"If entrance vault A is lost",cost:"$15k–$30k per day while the primary data centre is up",close:null,closeNote:"Not computable: quote pending (A2)"},
+ {k:"F6",cond:"If replication is lost",cost:null,costNote:"Not computable: no cost declared",close:null,closeNote:"Risk accepted until renewal (A3)"},
+ {k:"F5",cond:"If a consolidated metro network is lost",cost:null,costNote:"Not computable: no inputs declared",close:null,closeNote:"Not computable"}
+];
+
+function viewReports(sub){
+  const head = `<div class="page-head"><div><h1>Reports</h1><p class="sub">As published on ${fmt(PUB)}.</p></div>
+    <div class="subtabs" role="group" aria-label="Report"><button type="button" data-go="reports/register" aria-current="${sub==="register"?"page":"false"}">Executive register</button><button type="button" data-go="reports/board" aria-current="${sub==="board"?"page":"false"}">Board paper</button></div></div>`;
+  if(sub==="board") return guide("reports/board")+head+boardPaper();
+  return guide("reports/register")+head+`
+  <article class="report">
+    <div class="mast">Executive register · Acme Corp · Stonemark Infrastructure Assurance · published ${fmt(PUB)}</div>
+    <h2>Exposure register</h2>
+    <p>Each row is what a loss would cost Acme if it happened. The costs are Acme's own declared ranges. No probability or likelihood is estimated.</p>
+    <div class="tscroll"><table><thead><tr><th>Ref</th><th>Exposure</th><th>Sites</th><th>Evidence</th><th>Cost of loss</th><th>Cost to close</th></tr></thead><tbody>
+    ${REGISTER.map(r=>{const f=FINDINGS[r.k];return `<tr><td class="key" style="margin:0">${r.k}</td><td><b style="font-weight:600">${esc(f.title)}</b><br><span class="declared" style="font-size:13px">${esc(r.cond)}</span></td><td>${f.sites.length}</td><td><span class="state st-${f.state[0]}">${esc(f.state[1])}</span></td>
+      <td>${r.cost?`<span class="money">${esc(r.cost)}</span><span class="declared">Declared by Acme</span>`:`<span class="nc">${esc(r.costNote)}</span>`}</td>
+      <td>${r.close?`<span class="money">${esc(r.close)}</span><span class="declared">${esc(r.closeNote)}</span>`:`<span class="nc">${esc(r.closeNote)}</span>`}</td></tr>`}).join("")}
+    </tbody></table></div>
+    <p class="foot">Sample data. Declared figures are client-stated ranges, shown as declared. Rows without declared inputs are not computable and are never shown as zero.</p>
+  </article>`;
+}
+
+function boardPaper(){
+  return `<article class="report">
+    <div class="mast">Board paper · Network diversity assurance · Acme Corp · prepared by Stonemark Infrastructure Assurance · published ${fmt(PUB)}</div>
+    <h2>Acme's contracted network diversity</h2>
+    <h3>Assertion</h3>
+    <p class="assertion">Contracted diversity fails at four Acme sites on documented evidence and is suspected at two more. The diversity of data-centre replication cannot be established from the records available.</p>
+    <h3>Findings</h3>
+    <ol>
+      <li><b>One serving office under five sites.</b> Three Memphis distribution centres (confirmed) and two Memphis-area branches (suspected) take both their primary and backup access through one Northvale Access serving office. If that office is lost, all five lose connectivity together. Acme declares the cost at $210k–$340k per day.</li>
+      <li><b>Two carriers, one access provider at headquarters.</b> The backup carrier reaches the building over the same access provider and the same conduit as the primary. Confirmed. Acme declares the cost at $60k–$95k per day.</li>
+      <li><b>Replication diversity cannot be established.</b> One replication carrier declined to produce route records under its contract. Until that agreement renews, no one can show whether the two replication paths are diverse. This is a ceiling on what can be proven, not a finding that the paths converge.</li>
+    </ol>
+    <h3>Decisions</h3>
+    <div class="tscroll"><table><thead><tr><th>Ref</th><th>Decision</th><th>Answers</th><th>State</th></tr></thead><tbody>
+      ${DECISIONS.map(d=>`<tr><td class="key" style="margin:0">${d.id}</td><td>${esc(d.text)}</td><td>${d.ans}</td><td><span class="dstate ds-${d.cls}">${esc(d.state)}</span></td></tr>`).join("")}
+    </tbody></table></div>
+    <h3>Cost to close</h3>
+    <p>At least $40k–$55k, declared by Acme for headquarters. The Memphis serving office, the Toledo plant and the secondary data centre's entrance are not yet computable.</p>
+    <h3>Why this paper presents no return on investment</h3>
+    <p>A return figure needs the probability of each failure, and the evidence does not support one. The exposures above are stated as what a loss would cost if it happened.</p>
+    <p class="foot">Sample data. Costs are Acme's declared ranges.</p>
+  </article>`;
+}
+
+function viewDocuments(){
+  const loas = REQUESTS.map((r,i)=>({who:r.who,exec:addDays(PUB,-62+i),ack:r.d==="noresp"?null:addDays(PUB,-55+i)}));
+  return guide("documents")+`
+  <div class="page-head"><div><h1>Documents</h1><p class="sub">The authorizations and records behind the findings.</p></div></div>
+  <section class="panel"><h2>Records requests</h2>
+    <div class="tscroll"><table><thead><tr><th>Carrier or operator</th><th>Scope</th><th>Covers</th><th>Outcome</th></tr></thead>
+    <tbody>${REQUESTS.map(r=>`<tr><td>${esc(r.who)}</td><td>${esc(r.scope)}</td><td>${esc(r.covers)}</td><td><span class="disp d-${r.d}">${esc(r.label)}</span></td></tr>`).join("")}</tbody></table></div>
+  </section>
+  <div class="two">
+    <section class="panel"><h2>Letters of Authorization</h2>
+      <div class="tscroll"><table><thead><tr><th>Counterparty</th><th>Executed</th><th>Acknowledged</th></tr></thead>
+      <tbody>${loas.map(l=>`<tr><td>${esc(l.who)}</td><td>${fmt(l.exec)}</td><td>${l.ack?fmt(l.ack):`<span class="nc">Not acknowledged</span>`}</td></tr>`).join("")}</tbody></table></div>
+    </section>
+    <section class="panel"><h2>Evidence files</h2>
+      <div class="tscroll"><table><thead><tr><th>File</th><th>Source</th></tr></thead><tbody>
+        <tr><td>Circuit layout records, headquarters</td><td>Tessaro, Corvane</td></tr>
+        <tr><td>Circuit layout records, Toledo plant</td><td>Corvane, Harrow Fiber</td></tr>
+        <tr><td>Access records, Memphis distribution centres</td><td>Northvale Access</td></tr>
+        <tr><td>Carrier entrance records, Chicago secondary data centre</td><td>Corvane, Tessaro</td></tr>
+        <tr><td>Replication route records, wavelength A</td><td>Corvane Networks</td></tr>
+        <tr><td>SD-WAN HA and LTE failover configuration export</td><td>Acme Corp</td></tr>
+      </tbody></table></div>
+      <p class="readonly" style="margin:10px 0 0">In the demo, files open as sample documents.</p>
+    </section>
+  </div>`;
+}
+
+function viewDecisions(){
+  return guide("decisions")+`
+  <div class="page-head"><div><h1>Decisions</h1><p class="sub">Acme's decisions against each finding. A decision never changes an evidence grade.</p></div></div>
+  <section class="panel">${DECISIONS.map(d=>`<div class="dec"><div class="fkey">${d.id}</div>
+    <div><div style="font-weight:600">${esc(d.text)}</div><div class="ans">Answers ${d.ans}: ${esc(FINDINGS[d.ans].title)} · recorded ${fmt(d.when)} by Acme's enterprise sponsor</div></div>
+    <span class="dstate ds-${d.cls}">${esc(d.state)}</span></div>`).join("")}</section>`;
+}
+
+/* ---------- router ---------- */
+const app = document.getElementById("app");
+function current(){ return (location.hash||"#status").slice(1) || "status"; }
+function render(){
+  const r = current();
+  const top = r.split("/")[0];
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", (t.dataset.go===(top==="site"?"sites":top))?"page":"false"));
+  let html;
+  if(top==="status") html=viewStatus();
+  else if(top==="sites") html=viewSites();
+  else if(top==="site") html=viewSite(r.split("/")[1]);
+  else if(top==="findings") html=viewFindings();
+  else if(top==="reports") html=viewReports(r.split("/")[1]==="board"?"board":"register");
+  else if(top==="documents") html=viewDocuments();
+  else if(top==="decisions") html=viewDecisions();
+  else html=viewStatus();
+  app.innerHTML = html;
+}
+function go(route){
+  if(!route) return;
+  if(current()===route){ render(); return; }
+  location.hash = route;
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",render);
+
+document.addEventListener("click",e=>{
+  const g = e.target.closest("[data-go]"); if(g && !g.disabled){ go(g.dataset.go); return; }
+  const c = e.target.closest("[data-collapse]"); if(c){ const k=c.dataset.collapse; collapsed[k]=c.getAttribute("aria-expanded")==="true"; store.set("collapsed",collapsed); render(); return; }
+  if(e.target.closest("[data-hideguide]")){ guideHidden=true; store.set("guideHidden",true); render(); return; }
+  const l = e.target.closest("[data-lens]"); if(l){ lens=l.dataset.lens; legendFilter=null; render(); return; }
+  const lg = e.target.closest("[data-legend]"); if(lg){ legendFilter = legendFilter===lg.dataset.legend?null:lg.dataset.legend; render(); return; }
+});
+document.getElementById("showGuide").addEventListener("click",()=>{guideHidden=false;store.set("guideHidden",false);collapsed={};store.set("collapsed",{});render();});
+document.getElementById("reset").addEventListener("click",()=>{guideHidden=false;collapsed={};lens="completeness";legendFilter=null;store.set("guideHidden",false);store.set("collapsed",{});go("status");render();});
+
+/* dot tooltips + arrow keys within a row */
+const ft = document.getElementById("floattip");
+function showTip(el){
+  const s = byId[el.dataset.dot]; if(!s) return;
+  ft.innerHTML = `<b>${esc(s.name)}</b><br><span>${ARCH[s.arch]} · ${esc(s.city)}</span><br>${s.pct}% evidenced · ${lens==="completeness"?{green:"Defensible",amber:"Partial",red:"Thin",grey:"Not assessed"}[band(s)]:assur(s)}<br><span>${s.gaps} open ${s.gaps===1?"gap":"gaps"}${s.sev?" · 1 open "+s.sev+" risk":""}</span>`;
+  ft.style.display="block";
+  const r = el.getBoundingClientRect(), w = ft.offsetWidth;
+  ft.style.left = Math.max(8,Math.min(window.innerWidth-w-8, r.left + r.width/2 - w/2))+"px";
+  ft.style.top = (r.top - ft.offsetHeight - 10 < 8 ? r.bottom + 10 : r.top - ft.offsetHeight - 10)+"px";
+}
+const hideTip=()=>{ft.style.display="none"};
+if (window.matchMedia("(hover:hover)").matches){
+  app.addEventListener("mouseover",e=>{const d=e.target.closest("[data-dot]"); if(d) showTip(d);});
+  app.addEventListener("mouseout",e=>{if(e.target.closest("[data-dot]")) hideTip();});
+}
+app.addEventListener("focusin",e=>{const d=e.target.closest("[data-dot]"); if(d) showTip(d);});
+app.addEventListener("focusout",e=>{if(e.target.closest("[data-dot]")) hideTip();});
+window.addEventListener("scroll",hideTip,{passive:true});
+app.addEventListener("keydown",e=>{
+  const d=e.target.closest("[data-dot]"); if(!d) return;
+  if(e.key==="ArrowRight"||e.key==="ArrowLeft"){ e.preventDefault(); const sib = e.key==="ArrowRight"?d.nextElementSibling:d.previousElementSibling; if(sib) sib.focus(); }
+  if(e.key==="Escape") hideTip();
+});
+
+render();
+})();
+</script>
+</body>
+</html>
