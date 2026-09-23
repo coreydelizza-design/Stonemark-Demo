@@ -45,8 +45,8 @@ Ground rules for every step:
   Every FACT carries file:line.
 - Never weaken a test, edit a visual baseline to pass, or change a derived function or
   threshold to make the data look right. The data changes to meet the domain.
-- No real client, carrier, facility or person names. The client is Acme Corp; carriers
-  are invented. No real carrier in any finding.
+- No real client, carrier, facility or person names. The client is anonymized — no client brand
+  name anywhere, described by sector and size; carriers are invented. No real carrier in any finding.
 - Findings come only from pack §3 as confirmed by the owner. Never add, strengthen or
   reword a finding, and never contrive a fact to make a state appear.
 - No method material: no scoring weights, caps, thresholds, reconciliation rules,
@@ -139,7 +139,7 @@ Nothing runs before its predecessor is merged.
 | — | docs PR | **You confirm or strike F1–F8 and A1–A4** in pack §3, and edit the guide copy in §6 | Nothing in D3 runs until this is merged. |
 | D1 | `demo/d1-guardrails` | Automated checks running on every pull request | The workflow reports pass or fail on a PR; every guardrail is green or marked fixme with a later step named. |
 | D2 | `demo/d2-structure` | Splits the one file into dataset, derived functions, views and guide copy — still no build step | Before/after screenshots are identical; the deployed preview still works with no build command. |
-| D3 | `demo/d3-acme-dataset` | The Acme dataset and the story coverage test | Preview it: the board paper leads with the five-site serving-office finding, and the data centres show as separate. |
+| D3 | `demo/d3-dataset` | The engagement dataset and the story coverage test | Preview it: the board paper leads with the five-site serving-office finding, and the data centres show as separate. |
 | D4 | `demo/d4-fidelity` | Fixes every delta against the platform's client screens; adds FIDELITY.md | Compare a demo site card and the dot matrix against the platform's own, side by side. |
 | D5 | `demo/d5-guide` | Guide copy moved to one module and locked to pack §6 | Walk all eight stops; every banner and hover-over reads as §6 says. |
 | D6 | `demo/d6-publish` | Footer, terms page, robots, favicon, link preview | Paste the URL into a message and see what the preview shows. |

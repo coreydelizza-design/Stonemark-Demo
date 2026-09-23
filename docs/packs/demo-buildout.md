@@ -1,4 +1,4 @@
-# Demo build-out — Acme Corp's client view, in the standalone demo repo
+# Demo build-out — the client view of an anonymized engagement, in the standalone demo repo
 
 Owner request, 15 Sep 2026; revised 18 Sep 2026 for the standalone repo decision.
 Kept in `stonemark-demo` as `docs/packs/demo-buildout.md`. Runner:
@@ -35,8 +35,8 @@ pack item R9, and `docs/packs/claims-register.md`.
 
 ## 1. What this repo is, and what done means
 
-`stonemark-demo` is **Acme Corp's portal for one complete, published sample
-engagement** — what Acme's CIO would see after Stonemark delivered. It is the
+`stonemark-demo` is **the client portal for one complete, published sample
+engagement** — what the client's CIO would see after Stonemark delivered. It is the
 destination of **Explore demo** on the website, and the surface the owner walks a
 prospect through.
 
@@ -49,11 +49,28 @@ and tested rather than starting over.
 
 Done means all six hold:
 
-1. **The walk works.** Eight stops, each with real content: Status (with the dot
-   matrix), Sites, a read-only site detail, Findings, executive register, board paper,
-   Documents, Decisions.
+1. **The walk works.** Eight stops, each with real content: Status (the executive
+   dashboard), Sites, a read-only site detail, Findings, executive register, board
+   paper, Documents, Decisions.
+
+   The **executive dashboard** is what an enterprise customer lands on, and holds, in
+   order:
+   - the headline finding in one sentence, linking to the board paper;
+   - the KPI row: portfolio health score and band, sites assessed, publishable,
+     evidence completeness, open critical risks;
+   - the assurance distribution bar ("how much"), sites by band;
+   - the dot matrix ("which");
+   - sites needing attention, lowest health score first, each with its reason;
+   - the largest exposures, with the client's declared cost of loss;
+   - decisions awaiting the client;
+   - carrier records outcomes, by disposition.
+
+   It follows the platform's Dashboard order (KPI row, dot matrix, distribution bar,
+   sites needing attention) and the roles pack's customer definition: executive
+   dashboard, non-editable site cards, health scores. No trends, no forecasts, no
+   likelihood.
 2. **Everything computes from the seed.** Every figure on every screen is derived from
-   one Acme dataset by shared functions. No figure is typed into a screen.
+   one the client dataset by shared functions. No figure is typed into a screen.
 3. **Every finding is realistic** — an owner-confirmed pattern from §3.
 4. **The screens match the product** (G6), recorded in `FIDELITY.md`.
 5. **Nothing internal.** No operator control, no unpublished data, no method material:
@@ -62,10 +79,19 @@ Done means all six hold:
 
 ## 2. Decisions (binding)
 
-- **DD1. Names.** The client is **Acme Corp**. Carriers, access providers, colocation
-  operators and facilities are invented, and checked against the platform's carrier
-  registry and its historical brands. Real metros may be used; no real building,
-  serving office or CLLI code is ever named.
+- **DD1. The client is anonymized, not invented.** No client brand name appears
+  anywhere. The engagement is described by sector and size — "a North American
+  manufacturer, 22 sites" — and the portal header reads **Sample engagement —
+  Portal**. In copy the client is "the client".
+  - This is how a real anonymized case study reads, it signals the discretion the
+    product is selling, and it removes name-clearance risk entirely.
+  - Carriers, access providers, colocation operators and facilities are still
+    invented, and still checked against the platform's carrier registry and its
+    historical brands.
+  - Real metros may be used. No real building, serving office or CLLI code is ever
+    named.
+  - If a client name is ever reinstated, it needs clearance against state registries,
+    the trademark database and a plain web search before it enters the dataset.
 - **DD2. One engagement: 22 sites, status published.** One publication dated 14 days
   before the page is loaded; next review about 11 months out.
 - **DD3. Dates anchored to load time.** The dataset stores relative offsets and
@@ -75,7 +101,7 @@ Done means all six hold:
   the client screens. It may not diverge in vocabulary, colour language, card anatomy,
   or honesty rules (G6). New product features do not have to appear here; when a client
   screen changes materially, the demo follows.
-- **DD5. Money follows GOALS §6.** Acme's business inputs are declared ranges, labelled
+- **DD5. Money follows GOALS §6.** The client's business inputs are declared ranges, labelled
   as declared. At least one site has no inputs and renders not computable. Benchmarks
   come only from the claims register; anything absent renders unconfirmed.
 - **DD6. Guide layer.** Six tab hover-overs and a page banner on each of the eight
@@ -87,21 +113,28 @@ Done means all six hold:
   directory. One HTML entry point plus ES modules, loaded directly by the browser.
 - **DD8. Search engines.** `noindex` stays on until the owner decides otherwise, so the
   demo cannot outrank the marketing site or be found without the website's link.
+- **DD10. Health scores are published values.** Each site's health score, the
+  portfolio score and each band are stored in the dataset as they appear in a
+  published snapshot. The demo displays them; it never computes them, and never
+  contains the scoring model, weights, caps or band thresholds (trade secret,
+  `docs/ip/TRADE_SECRET_POLICY.md`). Tests assert the stored values are internally
+  consistent — distribution counts equal the band counts, the attention list equals
+  the at-risk and critical sites — not how they were derived.
 - **DD9. Auto-merge off.** One step per invocation, one PR per step, the owner merges.
 
-## 3. The Acme estate and findings — owner confirms before D3 (G5)
+## 3. The estate and findings — owner confirms before D3 (G5)
 
 **Estate (22):** 2 data centres in different metros, 1 headquarters, 3 regional
 offices, 4 manufacturing plants, 5 distribution centres, 6 branches, 1 contact centre.
 Every site is dual-carrier, or carrier plus LTE, as ordered.
 
 **Method.** Findings rest on carrier, access-provider and facility records, and on
-Acme's configuration records. No finding rests on an onsite survey, a site visit or a
+the client's configuration records. No finding rests on an onsite survey, a site visit or a
 walkdown, and no copy implies one.
 
 **Realism.** The two data centres are in different metros with separate access plant,
 entrances, serving offices and POPs, and the dataset documents them as separate. A
-clean result is part of a credible assessment: most of Acme's estate assesses clear or
+clean result is part of a credible assessment: most of the client's estate assesses clear or
 honestly unresolved, not broken.
 
 | # | Where | Pattern | Evidence state | Records |
@@ -112,12 +145,12 @@ honestly unresolved, not broken.
 | F4 | Secondary data centre | **Single facility entrance.** Both carriers enter the colocation facility through one entrance vault; the second entrance was never ordered. | Suspected | No response (facility operator) |
 | F5 | Regional offices | **Carrier consolidation.** Primary and backup came from two carriers that have since combined; whether the backup's metro network has been folded in is unknown. | Unverified | No response |
 | F6 | DC-to-DC replication | **Records withheld.** One carrier produced route records; the other declined under its contract. Diversity of the replication pair **cannot be established**. This does not assert that the paths converge; it is a ceiling until the agreement renews. | Insufficient evidence | Declined under contract |
-| F7 | Branches | **LTE failover and HA configuration confirmed.** Scope is confirmation only: that the LTE backup is configured to take over and HA is in place. No claim about the cellular path's physical diversity, and the copy says so. | Confirmed | Acme's configuration records |
+| F7 | Branches | **LTE failover and HA configuration confirmed.** Scope is confirmation only: that the LTE backup is configured to take over and HA is in place. No claim about the cellular path's physical diversity, and the copy says so. | Confirmed | the client's configuration records |
 | F8 | Primary data centre, 3 plants, 2 distribution centres, contact centre | **Assessed clear.** Separate entrances, serving offices and POPs, documented in carrier records. | Assessed clear | Produced |
 
 **Board paper:** the assertion, then F2, F1 and F6 in that order.
 
-**Acme's recorded decisions.** A decision never changes an evidence grade.
+**the client's recorded decisions.** A decision never changes an evidence grade.
 
 | # | Answers | Decision | State |
 |---|---|---|---|
@@ -153,7 +186,10 @@ Every line labelled **FACT**, **INFERENCE** or **UNVERIFIED**; every FACT with
    in the current dataset. For F7, say how a configuration-confirmation item is
    represented.
 4. **Fidelity deltas (G6).** Compare each screen with the platform's portal
-   specifications named at the top of this pack, and list every difference: vocabulary,
+   specifications named at the top of this pack — and the executive dashboard with
+   `docs/CUSTOMER_DASHBOARD.md` in the platform repo, which is the authoritative
+   customer dashboard specification and was not available when this pack was
+   written, so expect deltas there — and list every difference: vocabulary,
    card anatomy, tint bands, dot encoding (hollow, hatch, ring), state pill values,
    chip wording, report structure. This list is the D4 worklist.
 5. **Honesty sweep.** Any figure on screen not derived from the dataset; any use of
@@ -200,7 +236,7 @@ Branch: `demo/d2-structure`. Refactor only: the rendered result must be unchange
 the visual baselines prove it.
 
 - Split `index.html` into ES modules the browser loads directly (G7):
-  `src/data/acme.js` (the dataset), `src/domain/derive.js` (bands, assurance,
+  `src/data/engagement.js` (the dataset), `src/domain/derive.js` (bands, assurance,
   completeness, legend counts, dot encoding), `src/views/*.js` (one per stop),
   `src/guide/copy.js` (all §6 copy), `styles.css` (the tokens and rules).
 - **The views compute nothing.** Every band, count, percentage and legend figure comes
@@ -214,11 +250,11 @@ dataset, the derived functions and the guide copy each live in exactly one file.
 
 **Watch for:** adding a bundler, a framework or a package the deployed page depends on.
 
-### D3 — The Acme dataset
+### D3 — The engagement dataset
 
-Branch: `demo/d3-acme-dataset`. Requires G5.
+Branch: `demo/d3-dataset`. Requires G5.
 
-- Bring the dataset to §3 in full, as confirmed by the owner, in `src/data/acme.js`.
+- Bring the dataset to §3 in full, as confirmed by the owner, in `src/data/engagement.js`.
 - Apply DD3 date anchoring.
 - Add a **story coverage test** that, through `src/domain/derive.js`, asserts:
   - each finding F1–F8 and each decision A1–A4;
@@ -229,7 +265,10 @@ Branch: `demo/d3-acme-dataset`. Requires G5.
   - F6 renders as *cannot be established*, never as converged;
   - F7 states its scope as failover and HA configuration only, with no
     physical-diversity claim for the cellular path;
-  - every figure shown on Status equals the figure the legend and the cards show.
+  - every figure shown on the dashboard equals the figure the legend, the
+    distribution bar, the cards and the register show;
+  - the attention list is exactly the at-risk and critical sites, lowest score first;
+  - the largest exposures are the register's top rows with declared costs.
 - Run the DD1 name check.
 
 **Watch for:** changing a derived function or a threshold to make a finding appear;
@@ -311,20 +350,20 @@ rules apply as for product copy:
 
 | Tab | Hover-over |
 |---|---|
-| Status | Where Acme's assurance stands, and which sites share a point of failure. |
-| Sites | Every Acme site, and how much of its claimed diversity is proven. |
+| Status | The client's executive dashboard: health scores, exposures, and the decisions waiting on them. |
+| Sites | Every the client site, and how much of its claimed diversity is proven. |
 | Findings | What the assessment found, graded by the evidence behind each finding. |
 | Reports | The executive register and the board paper. |
-| Documents | The authorizations Acme signed and the records each carrier returned. |
-| Decisions | What Acme has approved, accepted or left open against each finding. |
+| Documents | The authorizations the client signed and the records each carrier returned. |
+| Decisions | What the client has approved, accepted or left open against each finding. |
 
 ### Page banners
 
 **1 of 8 — Status**
-- *What you're looking at:* Acme's assessment as published, with the dot matrix
-  showing which sites would lose connectivity together if one shared element
-  failed.
-- *What Stonemark did:* Under Acme's authorization, collected carrier,
+- *What you're looking at:* the client's executive dashboard as published: health
+  scores, how much of the estate is assured, which sites share a point of failure,
+  the largest exposures, and the decisions waiting on them.
+- *What Stonemark did:* Under the client's authorization, collected carrier,
   access-provider and facility records, and checked every claimed diverse path
   against them.
 - *Look for:* The five sites in one metro that all home to a single serving
@@ -334,7 +373,7 @@ rules apply as for product copy:
 - *What you're looking at:* One card per site, showing how far that site's
   diversity is proven, from claimed to defensible.
 - *What Stonemark did:* Graded each site by the strongest evidence behind it:
-  carrier records, Acme's own declarations, or nothing yet.
+  carrier records, the client's own declarations, or nothing yet.
 - *Look for:* Headquarters, where two carriers turn out to rely on one access
   provider. `[F1]`
 
@@ -342,7 +381,7 @@ rules apply as for product copy:
 - *What you're looking at:* The circuits, carriers and records behind one site's
   grade.
 - *What Stonemark did:* Compared each carrier's layout records with the
-  diversity Acme ordered.
+  diversity the client ordered.
 - *Look for:* The dark-fiber backup running in the same cable as the lit
   primary. `[F3]`
 
@@ -355,9 +394,9 @@ rules apply as for product copy:
   because one carrier withheld route records. `[F6]`
 
 **5 of 8 — Executive register**
-- *What you're looking at:* Each exposure alongside what Acme says an outage of
+- *What you're looking at:* Each exposure alongside what the client says an outage of
   that element would cost.
-- *What Stonemark did:* Used Acme's own declared cost ranges, marked as declared,
+- *What Stonemark did:* Used the client's own declared cost ranges, marked as declared,
   and estimated no probability or likelihood.
 - *Look for:* The five-site serving-office exposure, and where its cost figure
   comes from. `[F2]`
@@ -371,7 +410,7 @@ rules apply as for product copy:
   asked to accept until renewal. `[F6]`
 
 **7 of 8 — Documents**
-- *What you're looking at:* The Letters of Authorization Acme signed, and what
+- *What you're looking at:* The Letters of Authorization the client signed, and what
   each carrier and facility operator produced, partly produced, withheld or
   left unanswered.
 - *What Stonemark did:* Tracked every records request to its outcome, so each
@@ -380,7 +419,7 @@ rules apply as for product copy:
   unanswered. `[F4]`
 
 **8 of 8 — Decisions**
-- *What you're looking at:* Acme's decisions against each finding: approved,
+- *What you're looking at:* the client's decisions against each finding: approved,
   risk accepted, or open.
 - *What Stonemark did:* Recorded each decision against the finding it answers,
   without changing any evidence grade.

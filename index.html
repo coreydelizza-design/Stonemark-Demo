@@ -8,8 +8,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Acme Corp — Portal · Stonemark demo</title>
-<meta name="description" content="Stonemark assurance platform demo: a sample engagement for a fictional client, on synthetic data.">
+<title>Sample engagement — Portal · Stonemark demo</title>
+<meta name="description" content="Stonemark assurance platform demo: an anonymized sample engagement for a North American manufacturer, on synthetic data.">
 <meta name="copyright" content="© 2026 Stonemark Infrastructure Assurance LLC">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,6 +153,39 @@ h1{font-size:24px;line-height:1.2;margin:0;font-weight:600;letter-spacing:-.01em
 .floattip b{font-weight:600;font-size:13px}
 .floattip span{color:var(--muted)}
 
+/* executive dashboard */
+.headline{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:12px;padding:16px 20px;margin-bottom:14px;display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.headline .lbl{font-size:12.5px;color:var(--muted);margin-bottom:4px}
+.headline p{margin:0;font-family:var(--serif);font-size:19px;line-height:1.45;max-width:70ch}
+.linkbtn{background:none;border:0;color:var(--accent);cursor:pointer;padding:0;font-size:14px;white-space:nowrap}
+.linkbtn:hover{text-decoration:underline}
+.kpi .value small{font-size:15px;font-weight:600;margin-left:6px}
+.distbar{display:flex;height:28px;border-radius:7px;overflow:hidden;border:1px solid var(--line);margin:4px 0 10px}
+.distbar span{display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;color:#fff;min-width:0}
+.distbar .dk{color:var(--ink)}
+.distlegend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+.distlegend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:0}
+.dash2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:860px){.dash2{grid-template-columns:1fr}}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.panel-head h2{margin:0}
+.rowlist{list-style:none;margin:0;padding:0}
+.rowlist li{border-top:1px solid var(--line)}
+.rowlist li:first-child{border-top:0}
+.rowbtn{width:100%;display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;text-align:left;background:none;border:0;padding:10px 2px;cursor:pointer}
+.rowbtn:hover .rname{text-decoration:underline}
+.rname{font-weight:600;font-size:14.5px}
+.rwhy{font-size:13px;color:var(--muted);grid-column:1}
+.score{display:inline-flex;align-items:baseline;gap:6px;justify-self:end;grid-row:1/span 2;grid-column:2}
+.score b{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.bandtag{font-size:12px;font-weight:600;border-radius:999px;padding:1px 8px;border:1px solid currentColor;white-space:nowrap}
+.bt-Critical{color:var(--red)}.bt-At{color:var(--amber)}.bt-Good{color:var(--muted)}.bt-Excellent{color:var(--green)}
+.recbar{display:flex;height:12px;border-radius:6px;overflow:hidden;margin:8px 0 12px;background:var(--line)}
+.reclist{list-style:none;margin:0;padding:0;font-size:13.5px}
+.reclist li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid var(--line)}
+.reclist li:first-child{border-top:0}
+.reclist .who{color:var(--muted);font-size:12.5px}
+
 /* site cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .card{text-align:left;background:var(--t-grey);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:12px;padding:13px 14px 12px;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-height:168px;position:relative}
@@ -256,7 +289,7 @@ tr:last-child td{border-bottom:0}
 </head>
 <body>
 <div class="demobar"><div class="wrap">
-  <span><strong>Acme Corp — sample engagement</strong> · Synthetic data</span>
+  <span><strong>Sample engagement</strong> · North American manufacturer, 22 sites · Synthetic data</span>
   <span style="display:flex;gap:8px">
     <button class="btn-quiet" id="showGuide" type="button">Show guide</button>
     <button class="btn-quiet" id="reset" type="button">Reset</button>
@@ -264,12 +297,12 @@ tr:last-child td{border-bottom:0}
 </div></div>
 
 <header class="top"><div class="wrap">
-  <a class="brand" href="#status" aria-label="Stonemark — Acme Corp portal status">
+  <a class="brand" href="#status" aria-label="Stonemark — sample engagement portal status">
     <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#ef6b2e" stroke-width="4" stroke-linecap="square" fill="none"><line x1="8" y1="32" x2="16" y2="8"/><line x1="17" y1="32" x2="25" y2="8"/><line x1="26" y1="32" x2="34" y2="8"/></g></svg>
     <span class="wordmark">STONEMARK</span>
   </a>
   <span class="divider" aria-hidden="true"></span>
-  <span class="eng">Acme Corp — Portal</span>
+  <span class="eng">Sample engagement — Portal</span>
   <span class="spacer"></span>
   <button class="signout" type="button">Exit demo</button>
 </div></header>
@@ -280,7 +313,7 @@ tr:last-child td{border-bottom:0}
 </div></nav>
 
 <main><div class="wrap" id="app"></div></main>
-<footer style="border-top:1px solid var(--line);background:var(--surface)"><div class="wrap" style="padding:14px 20px;font-size:12.5px;color:var(--muted)">© 2026 Stonemark Infrastructure Assurance LLC · Sample data for a fictional client · Not an assessment, attestation or audit, and not to be relied on</div></footer>
+<footer style="border-top:1px solid var(--line);background:var(--surface)"><div class="wrap" style="padding:14px 20px;font-size:12.5px;color:var(--muted)">© 2026 Stonemark Infrastructure Assurance LLC · Sample data, anonymized client · Not an assessment, attestation or audit, and not to be relied on</div></footer>
 <div class="floattip" id="floattip" role="tooltip"></div>
 
 <script>
@@ -298,25 +331,25 @@ const REVIEW = addMonths(NOW,11);
 
 /* ---------- guide copy (pack §6, verbatim) ---------- */
 const TABS = [
-  {id:"status",label:"Status",tip:"Where Acme's assurance stands, and which sites share a point of failure."},
-  {id:"sites",label:"Sites",tip:"Every Acme site, and how much of its claimed diversity is proven."},
+  {id:"status",label:"Status",tip:"The client's executive dashboard: health scores, exposures, and the decisions waiting on them."},
+  {id:"sites",label:"Sites",tip:"Every site in the engagement, and how much of its claimed diversity is proven."},
   {id:"findings",label:"Findings",tip:"What the assessment found, graded by the evidence behind each finding."},
   {id:"reports",label:"Reports",tip:"The executive register and the board paper."},
-  {id:"documents",label:"Documents",tip:"The authorizations Acme signed and the records each carrier returned."},
-  {id:"decisions",label:"Decisions",tip:"What Acme has approved, accepted or left open against each finding."}
+  {id:"documents",label:"Documents",tip:"The authorizations the client signed and the records each carrier returned."},
+  {id:"decisions",label:"Decisions",tip:"What the client has approved, accepted or left open against each finding."}
 ];
 const STOPS = [
-  {route:"status",title:"Status",what:"Acme's assessment as published, with the dot matrix showing which sites would lose connectivity together if one shared element failed.",did:"Under Acme's authorization, collected carrier, access-provider and facility records, and checked every claimed diverse path against them.",look:"The five sites in one metro that all home to a single serving office.",keys:["F2"]},
-  {route:"sites",title:"Sites",what:"One card per site, showing how far that site's diversity is proven, from claimed to defensible.",did:"Graded each site by the strongest evidence behind it: carrier records, Acme's own declarations, or nothing yet.",look:"Headquarters, where two carriers turn out to rely on one access provider.",keys:["F1"]},
-  {route:"site/tol",title:"Site detail",what:"The circuits, carriers and records behind one site's grade.",did:"Compared each carrier's layout records with the diversity Acme ordered.",look:"The dark-fiber backup running in the same cable as the lit primary.",keys:["F3"]},
+  {route:"status",title:"Status",what:"The client's executive dashboard as published: health scores, how much of the estate is assured, which sites share a point of failure, the largest exposures, and the decisions waiting on them.",did:"Under the client's authorization, collected carrier, access-provider and facility records, and checked every claimed diverse path against them.",look:"The five sites in one metro that all home to a single serving office.",keys:["F2"]},
+  {route:"sites",title:"Sites",what:"One card per site, showing how far that site's diversity is proven, from claimed to defensible.",did:"Graded each site by the strongest evidence behind it: carrier records, the client's own declarations, or nothing yet.",look:"Headquarters, where two carriers turn out to rely on one access provider.",keys:["F1"]},
+  {route:"site/tol",title:"Site detail",what:"The circuits, carriers and records behind one site's grade.",did:"Compared each carrier's layout records with the diversity the client ordered.",look:"The dark-fiber backup running in the same cable as the lit primary.",keys:["F3"]},
   {route:"findings",title:"Findings",what:"Every finding, graded confirmed, suspected, unverified, or cannot be established.",did:"Kept what records prove separate from what is claimed or unknown, and never presented an unknown as safe.",look:"The replication paths whose diversity cannot be established, because one carrier withheld route records.",keys:["F6"]},
-  {route:"reports/register",title:"Executive register",what:"Each exposure alongside what Acme says an outage of that element would cost.",did:"Used Acme's own declared cost ranges, marked as declared, and estimated no probability or likelihood.",look:"The five-site serving-office exposure, and where its cost figure comes from.",keys:["F2"]},
+  {route:"reports/register",title:"Executive register",what:"Each exposure alongside what the client says an outage of that element would cost.",did:"Used the client's own declared cost ranges, marked as declared, and estimated no probability or likelihood.",look:"The five-site serving-office exposure, and where its cost figure comes from.",keys:["F2"]},
   {route:"reports/board",title:"Board paper",what:"One assertion, three findings, the decisions the board is asked to take, and the cost to close.",did:"Stated exposure, not odds, and declined to present a return calculation.",look:"The decisions table, and the replication finding the board is asked to accept until renewal.",keys:["F6"]},
-  {route:"documents",title:"Documents",what:"The Letters of Authorization Acme signed, and what each carrier and facility operator produced, partly produced, withheld or left unanswered.",did:"Tracked every records request to its outcome, so each gap has a named reason.",look:"The colocation operator's records request that is still unanswered.",keys:["F4"]},
-  {route:"decisions",title:"Decisions",what:"Acme's decisions against each finding: approved, risk accepted, or open.",did:"Recorded each decision against the finding it answers, without changing any evidence grade.",look:"The approved fix at headquarters and the still-open second entrance at the secondary data centre.",keys:["A1","A2"]}
+  {route:"documents",title:"Documents",what:"The Letters of Authorization the client signed, and what each carrier and facility operator produced, partly produced, withheld or left unanswered.",did:"Tracked every records request to its outcome, so each gap has a named reason.",look:"The colocation operator's records request that is still unanswered.",keys:["F4"]},
+  {route:"decisions",title:"Decisions",what:"The client's decisions against each finding: approved, risk accepted, or open.",did:"Recorded each decision against the finding it answers, without changing any evidence grade.",look:"The approved fix at headquarters and the still-open second entrance at the secondary data centre.",keys:["A1","A2"]}
 ];
 
-/* ---------- the Acme seed (pack §3, sample data) ---------- */
+/* ---------- the engagement dataset (pack §3, sample data) ---------- */
 const ARCH = ["Data centre","Headquarters","Regional office","Manufacturing plant","Distribution centre","Branch","Contact centre"];
 const P="Produced",PT="Partly produced",NR="No response",DC="Declined under contract",CF="Configuration confirmed";
 const sepPair=(a1,a2,e1,e2,pop1,pop2)=>[
@@ -371,7 +404,7 @@ const S = [
 
 const FINDINGS = {
  F2:{title:"One serving office under five \u201cdiverse\u201d sites",state:["confirmed","Confirmed at 3 sites · suspected at 2"],sev:"critical",sites:["mem0","mem1","mem2","pop","sha"],basis:"Northvale Access records, partly produced",
-   text:"Every access circuit at the three Memphis distribution centres and two Memphis-area branches homes to one Northvale Access serving office. If that office is lost, primary and backup go down together at all five sites."},
+   text:"Every access circuit at the three Memphis-area distribution centres and two branches homes to one Northvale Access serving office. If that office is lost, primary and backup go down together at all five sites."},
  F1:{title:"Two carriers, one access provider at headquarters",state:["confirmed","Confirmed"],sev:"critical",sites:["cmh"],basis:"Tessaro and Corvane layout records",
    text:"The Corvane backup is an off-net tail from Carrow Access, the same access provider as the Tessaro primary. Both circuits enter through basement conduit 1."},
  F3:{title:"Lit and dark fiber in one cable at the Toledo plant",state:["confirmed","Confirmed"],sev:"high",sites:["tol"],basis:"Corvane and Harrow Fiber layout records",
@@ -382,8 +415,8 @@ const FINDINGS = {
    text:"Corvane Networks produced route records for its replication wavelength. Pellam Transit declined to produce route records under its contract terms. Whether the two replication paths are diverse cannot be established until that agreement renews. This finding does not say the paths converge."},
  F5:{title:"Carrier consolidation at the regional offices",state:["unverified","Unverified"],sev:null,sites:["atl","phx","clt"],basis:"Oriel Fibre has not responded",
    text:"Primary and backup were ordered from Tessaro Communications and Oriel Fibre, which have since combined through acquisition. Whether Oriel's metro network has been folded into Tessaro's is not yet known."},
- F7:{title:"LTE failover and HA configuration confirmed",state:["clear","Configuration confirmed"],sev:null,sites:["tul","oma","boi","alb"],basis:"Acme's configuration records",
-   text:"Acme's configuration records confirm the LTE backup is set to take over and high availability is configured. The scope is confirmation only: the engagement makes no claim about whether the cellular path is physically diverse."},
+ F7:{title:"LTE failover and HA configuration confirmed",state:["clear","Configuration confirmed"],sev:null,sites:["tul","oma","boi","alb"],basis:"The client's configuration records",
+   text:"The client's configuration records confirm the LTE backup is set to take over and high availability is configured. The scope is confirmation only: the engagement makes no claim about whether the cellular path is physically diverse."},
  F8:{title:"Assessed clear",state:["clear","Assessed clear"],sev:null,sites:["dal","gsp","ict","fwa","rno","abe","tpa"],basis:"Carrier layout records",
    text:"Separate entrances, separate serving offices and separate POPs, all documented in carrier records."}
 };
@@ -410,6 +443,11 @@ const REQUESTS = [
 /* ---------- derived (the build computes these in domain functions) ---------- */
 const band = s => s.pct===0?"grey":s.pct<50?"red":s.pct<80?"amber":"green";
 const assur = s => (s.sev==="critical"&&!s.suspected)?"Critical":(s.sev||band(s)==="red")?"At risk":s.pct>=85?"Excellent":"Good";
+/* Published health scores. The demo carries the values as published in the snapshot;
+   it never contains the scoring model, weights, caps or thresholds. */
+const PUBLISHED_SCORES = {"dal": 88, "chi": 58, "cmh": 41, "atl": 49, "phx": 47, "clt": 52, "tol": 61, "gsp": 78, "ict": 86, "fwa": 76, "mem0": 44, "mem1": 43, "mem2": 42, "rno": 87, "abe": 89, "pop": 55, "sha": 53, "tul": 74, "oma": 73, "boi": 74, "alb": 75, "tpa": 77};
+S.forEach(s=>{ s.score = PUBLISHED_SCORES[s.id]; });
+const PORTFOLIO_SCORE = 62;
 const byId = Object.fromEntries(S.map(s=>[s.id,s]));
 const esc = t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const statePill = s=>band(s)==="green"?("Attested · "+fmtShort(PUB)):band(s)==="grey"?"Not assessed":"In assessment";
@@ -474,20 +512,80 @@ function card(s){
   </button>`;
 }
 
+const BAND_ORDER=["Excellent","Good","At risk","Critical"];
+const BAND_COLOR={"Excellent":"var(--green)","Good":"color-mix(in srgb,var(--green) 50%,var(--surface))","At risk":"var(--amber)","Critical":"var(--red)"};
+const bandTag=b=>`<span class="bandtag bt-${b.split(" ")[0]}">${b}</span>`;
+const siteReason=s=>{const k=s.f.find(x=>EXPOSURE_ORDER.includes(x)); return k?FINDINGS[k].title:(band(s)==="red"?"Evidence is thin":"");};
+
 function viewStatus(){
   const avg = Math.round(S.reduce((a,s)=>a+s.pct,0)/S.length);
   const publishable = S.filter(s=>band(s)==="green").length;
-  const crit = EXPOSURE_ORDER.filter(k=>FINDINGS[k].sev==="critical").length;
+  const crit = EXPOSURE_ORDER.filter(k=>FINDINGS[k].sev==="critical");
+  const critSites = crit.reduce((a,k)=>a+FINDINGS[k].sites.length,0);
+  const dist = BAND_ORDER.map(b=>[b,S.filter(s=>assur(s)===b).length]);
+  const attention = S.filter(s=>["Critical","At risk"].includes(assur(s))).sort((a,b)=>a.score-b.score);
+  const exposures = REGISTER.filter(r=>r.cost).slice(0,3);
+  const awaiting = DECISIONS.filter(d=>d.cls==="open");
+  const recCounts = [["produced","Produced","var(--green)"],["partial","Partly produced","var(--amber)"],["noresp","No response","var(--muted)"],["declined","Declined under contract","var(--red)"]]
+     .map(([d,l,c])=>[d,l,c,REQUESTS.filter(r=>r.d===d)]).filter(x=>x[3].length);
   return guide("status")+`
-  <div class="page-head"><div><h1>Assurance at publication</h1><p class="sub">Acme's network diversity assessment as published on ${fmt(PUB)}. Nothing on this page changes until Stonemark publishes again.</p></div></div>
+  <div class="page-head"><div><h1>Executive dashboard</h1><p class="sub">A North American manufacturer, 22 sites. Assurance as published on ${fmt(PUB)}. A photograph of that date: nothing here changes until Stonemark publishes again.</p></div></div>
+
+  <section class="headline" aria-label="Headline finding">
+    <div><div class="lbl">The finding, in one sentence</div>
+    <p>Contracted diversity fails at four of the client's sites on documented evidence and is suspected at two more. The diversity of data-centre replication cannot be established from the records available.</p></div>
+    <button class="linkbtn" type="button" data-go="reports/board">Read the board paper</button>
+  </section>
+
   <div class="grid-kpi">
-    <div class="kpi band-at-risk"><div class="label">Portfolio assurance</div><div class="value">At risk</div><div class="note">Capped by ${crit} open critical risks</div></div>
+    <div class="kpi band-at-risk"><div class="label">Portfolio health score</div><div class="value">${PORTFOLIO_SCORE}<small>At risk</small></div><div class="note">Capped by ${crit.length} open critical risks</div></div>
     <div class="kpi"><div class="label">Sites assessed</div><div class="value">${S.length} of ${S.length}</div></div>
     <div class="kpi"><div class="label">Publishable</div><div class="value">${publishable}</div><div class="note">Defensible evidence</div></div>
     <div class="kpi"><div class="label">Evidence completeness</div><div class="value">${avg}%</div></div>
-    <div class="kpi"><div class="label">Open critical risks</div><div class="value">${crit}</div><div class="note">Across ${EXPOSURE_ORDER.filter(k=>FINDINGS[k].sev==="critical").reduce((a,k)=>a+FINDINGS[k].sites.length,0)} sites</div></div>
+    <div class="kpi"><div class="label">Open critical risks</div><div class="value">${crit.length}</div><div class="note">Across ${critSites} sites</div></div>
   </div>
-  <section class="panel" aria-label="Dot matrix">${matrix(avg)}</section>`;
+
+  <section class="panel" aria-label="Assurance distribution" style="margin-bottom:12px">
+    <div class="panel-head"><h2>How much of the estate is assured</h2><span class="asat">${S.length} sites by assurance band</span></div>
+    <div class="distbar" role="img" aria-label="${dist.map(([b,n])=>n+" "+b).join(", ")}">${dist.filter(d=>d[1]).map(([b,n])=>`<span class="${b==="Good"?"dk":""}" style="flex:${n};background:${BAND_COLOR[b]}">${n}</span>`).join("")}</div>
+    <div class="distlegend">${dist.filter(d=>d[1]).map(([b,n])=>`<span><i style="background:${BAND_COLOR[b]}"></i>${b} ${n}</span>`).join("")}</div>
+  </section>
+
+  <section class="panel" aria-label="Dot matrix">
+    <div class="panel-head"><h2>Which sites</h2></div>
+    ${matrix(avg)}
+  </section>
+
+  <div class="dash2">
+    <section class="panel" aria-label="Sites needing attention">
+      <div class="panel-head"><h2>Sites needing attention</h2><button class="linkbtn" type="button" data-go="sites">All sites</button></div>
+      <ul class="rowlist">${attention.slice(0,6).map(s=>`<li><button class="rowbtn" type="button" data-go="site/${s.id}">
+        <span class="rname">${esc(s.name)}</span><span class="score"><b>${s.score}</b>${bandTag(assur(s))}</span>
+        <span class="rwhy">${esc(siteReason(s))}</span></button></li>`).join("")}</ul>
+      ${attention.length>6?`<p class="readonly" style="margin:8px 0 0">${attention.length-6} more at risk. See all sites.</p>`:""}
+    </section>
+    <section class="panel" aria-label="Largest exposures">
+      <div class="panel-head"><h2>Largest exposures</h2><button class="linkbtn" type="button" data-go="reports/register">Executive register</button></div>
+      <ul class="rowlist">${exposures.map(r=>{const f=FINDINGS[r.k];return `<li><button class="rowbtn" type="button" data-go="findings">
+        <span class="rname">${esc(f.title)}</span><span class="score" style="text-align:right;display:block"><span class="money" style="font-weight:600">${esc(r.cost.replace(" while the primary data centre is up",""))}</span><span class="declared">Declared by the client</span></span>
+        <span class="rwhy">${esc(r.cond)}</span></button></li>`}).join("")}</ul>
+      <p class="readonly" style="margin:8px 0 0">What each loss would cost if it happened. No likelihood is estimated.</p>
+    </section>
+  </div>
+
+  <div class="dash2">
+    <section class="panel" aria-label="Decisions awaiting the client">
+      <div class="panel-head"><h2>Decisions awaiting the client</h2><button class="linkbtn" type="button" data-go="decisions">All decisions</button></div>
+      <ul class="rowlist">${awaiting.map(d=>`<li><button class="rowbtn" type="button" data-go="decisions">
+        <span class="rname">${esc(d.text)}</span><span class="score"><span class="dstate ds-open">${esc(d.state)}</span></span>
+        <span class="rwhy">${d.id} · answers ${d.ans}: ${esc(FINDINGS[d.ans].title)}</span></button></li>`).join("")}</ul>
+    </section>
+    <section class="panel" aria-label="Carrier records">
+      <div class="panel-head"><h2>Carrier records</h2><button class="linkbtn" type="button" data-go="documents">Documents</button></div>
+      <div class="recbar" role="img" aria-label="${recCounts.map(x=>x[3].length+" "+x[1]).join(", ")}">${recCounts.map(x=>`<span style="flex:${x[3].length};background:${x[2]}"></span>`).join("")}</div>
+      <ul class="reclist">${recCounts.map(x=>`<li><span><span class="disp d-${x[0]}">${x[1]}</span></span><span class="who">${x[3].map(r=>esc(r.who)).join(", ")}</span></li>`).join("")}</ul>
+    </section>
+  </div>`;
 }
 
 const COMPLETENESS = [["green","Defensible","var(--green)",""],["amber","Partial","var(--amber)",""],["red","Thin","var(--red)","hatch"],["grey","Not assessed","transparent","hollow"]];
@@ -540,7 +638,7 @@ function viewSite(id){
       <h1 style="margin-top:8px">${esc(s.name)}</h1>
       <div class="hero-meta"><span class="arch">${ARCH[s.arch]}</span><span class="desc">${esc(s.city)} · ${esc(carriersOf(s))} · ${s.circuits.length} circuits</span>${s.sev?`<span class="sev sev-${s.sev}">1 ${s.sev}${s.suspected?" (suspected)":""}</span>`:""}</div>
     </div>
-    <div class="hero-num"><div class="big">${s.pct}%</div><div class="lbl">evidenced</div><div class="big" style="font-size:22px;margin-top:10px">${s.gaps}</div><div class="lbl">open ${s.gaps===1?"gap":"gaps"}</div></div>
+    <div class="hero-num"><div class="big">${s.score}</div><div class="lbl">health score · ${assur(s)}</div><div class="big" style="font-size:22px;margin-top:10px">${s.pct}%</div><div class="lbl">evidenced</div><div class="big" style="font-size:22px;margin-top:10px">${s.gaps}</div><div class="lbl">open ${s.gaps===1?"gap":"gaps"}</div></div>
   </section>
   <section class="panel"><h2>Circuits</h2>
     <div class="tscroll"><table><thead><tr><th>Circuit</th><th>Carrier</th><th>Access provider</th><th>Medium</th><th>Building entrance</th><th>POP / serving office</th><th>Records</th></tr></thead>
@@ -574,7 +672,7 @@ function viewFindings(){
 
 const REGISTER = [
  {k:"F2",cond:"If the Northvale Memphis Central serving office is lost",cost:"$210k–$340k per day",close:null,closeNote:"Not computable: review open (A4)"},
- {k:"F1",cond:"If basement conduit 1 or Carrow Access's local plant is lost",cost:"$60k–$95k per day",close:"$40k–$55k",closeNote:"Declared by Acme (A1 approved)"},
+ {k:"F1",cond:"If basement conduit 1 or Carrow Access's local plant is lost",cost:"$60k–$95k per day",close:"$40k–$55k",closeNote:"Declared by the client (A1 approved)"},
  {k:"F3",cond:"If cable TOL-114 is cut before splice point SP-04",cost:"$45k–$70k per day",close:null,closeNote:"Not computable: no decision recorded"},
  {k:"F4",cond:"If entrance vault A is lost",cost:"$15k–$30k per day while the primary data centre is up",close:null,closeNote:"Not computable: quote pending (A2)"},
  {k:"F6",cond:"If replication is lost",cost:null,costNote:"Not computable: no cost declared",close:null,closeNote:"Risk accepted until renewal (A3)"},
@@ -587,12 +685,12 @@ function viewReports(sub){
   if(sub==="board") return guide("reports/board")+head+boardPaper();
   return guide("reports/register")+head+`
   <article class="report">
-    <div class="mast">Executive register · Acme Corp · Stonemark Infrastructure Assurance · published ${fmt(PUB)}</div>
+    <div class="mast">Executive register · sample engagement · Stonemark Infrastructure Assurance · published ${fmt(PUB)}</div>
     <h2>Exposure register</h2>
-    <p>Each row is what a loss would cost Acme if it happened. The costs are Acme's own declared ranges. No probability or likelihood is estimated.</p>
+    <p>Each row is what a loss would cost the client if it happened. The costs are the client's own declared ranges. No probability or likelihood is estimated.</p>
     <div class="tscroll"><table><thead><tr><th>Ref</th><th>Exposure</th><th>Sites</th><th>Evidence</th><th>Cost of loss</th><th>Cost to close</th></tr></thead><tbody>
     ${REGISTER.map(r=>{const f=FINDINGS[r.k];return `<tr><td class="key" style="margin:0">${r.k}</td><td><b style="font-weight:600">${esc(f.title)}</b><br><span class="declared" style="font-size:13px">${esc(r.cond)}</span></td><td>${f.sites.length}</td><td><span class="state st-${f.state[0]}">${esc(f.state[1])}</span></td>
-      <td>${r.cost?`<span class="money">${esc(r.cost)}</span><span class="declared">Declared by Acme</span>`:`<span class="nc">${esc(r.costNote)}</span>`}</td>
+      <td>${r.cost?`<span class="money">${esc(r.cost)}</span><span class="declared">Declared by the client</span>`:`<span class="nc">${esc(r.costNote)}</span>`}</td>
       <td>${r.close?`<span class="money">${esc(r.close)}</span><span class="declared">${esc(r.closeNote)}</span>`:`<span class="nc">${esc(r.closeNote)}</span>`}</td></tr>`}).join("")}
     </tbody></table></div>
     <p class="foot">Sample data. Declared figures are client-stated ranges, shown as declared. Rows without declared inputs are not computable and are never shown as zero.</p>
@@ -601,14 +699,14 @@ function viewReports(sub){
 
 function boardPaper(){
   return `<article class="report">
-    <div class="mast">Board paper · Network diversity assurance · Acme Corp · prepared by Stonemark Infrastructure Assurance · published ${fmt(PUB)}</div>
-    <h2>Acme's contracted network diversity</h2>
+    <div class="mast">Board paper · Network diversity assurance · sample engagement, North American manufacturer · prepared by Stonemark Infrastructure Assurance · published ${fmt(PUB)}</div>
+    <h2>Contracted network diversity</h2>
     <h3>Assertion</h3>
-    <p class="assertion">Contracted diversity fails at four Acme sites on documented evidence and is suspected at two more. The diversity of data-centre replication cannot be established from the records available.</p>
+    <p class="assertion">Contracted diversity fails at four of the client's sites on documented evidence and is suspected at two more. The diversity of data-centre replication cannot be established from the records available.</p>
     <h3>Findings</h3>
     <ol>
-      <li><b>One serving office under five sites.</b> Three Memphis distribution centres (confirmed) and two Memphis-area branches (suspected) take both their primary and backup access through one Northvale Access serving office. If that office is lost, all five lose connectivity together. Acme declares the cost at $210k–$340k per day.</li>
-      <li><b>Two carriers, one access provider at headquarters.</b> The backup carrier reaches the building over the same access provider and the same conduit as the primary. Confirmed. Acme declares the cost at $60k–$95k per day.</li>
+      <li><b>One serving office under five sites.</b> Three Memphis distribution centres (confirmed) and two Memphis-area branches (suspected) take both their primary and backup access through one Northvale Access serving office. If that office is lost, all five lose connectivity together. The client declares the cost at $210k–$340k per day.</li>
+      <li><b>Two carriers, one access provider at headquarters.</b> The backup carrier reaches the building over the same access provider and the same conduit as the primary. Confirmed. The client declares the cost at $60k–$95k per day.</li>
       <li><b>Replication diversity cannot be established.</b> One replication carrier declined to produce route records under its contract. Until that agreement renews, no one can show whether the two replication paths are diverse. This is a ceiling on what can be proven, not a finding that the paths converge.</li>
     </ol>
     <h3>Decisions</h3>
@@ -616,10 +714,10 @@ function boardPaper(){
       ${DECISIONS.map(d=>`<tr><td class="key" style="margin:0">${d.id}</td><td>${esc(d.text)}</td><td>${d.ans}</td><td><span class="dstate ds-${d.cls}">${esc(d.state)}</span></td></tr>`).join("")}
     </tbody></table></div>
     <h3>Cost to close</h3>
-    <p>At least $40k–$55k, declared by Acme for headquarters. The Memphis serving office, the Toledo plant and the secondary data centre's entrance are not yet computable.</p>
+    <p>At least $40k–$55k, declared by the client for headquarters. The Memphis serving office, the Toledo plant and the secondary data centre's entrance are not yet computable.</p>
     <h3>Why this paper presents no return on investment</h3>
     <p>A return figure needs the probability of each failure, and the evidence does not support one. The exposures above are stated as what a loss would cost if it happened.</p>
-    <p class="foot">Sample data. Costs are Acme's declared ranges.</p>
+    <p class="foot">Sample data. Costs are the client's declared ranges.</p>
   </article>`;
 }
 
@@ -643,7 +741,7 @@ function viewDocuments(){
         <tr><td>Access records, Memphis distribution centres</td><td>Northvale Access</td></tr>
         <tr><td>Carrier entrance records, Chicago secondary data centre</td><td>Corvane, Tessaro</td></tr>
         <tr><td>Replication route records, wavelength A</td><td>Corvane Networks</td></tr>
-        <tr><td>SD-WAN HA and LTE failover configuration export</td><td>Acme Corp</td></tr>
+        <tr><td>SD-WAN HA and LTE failover configuration export</td><td>The client</td></tr>
       </tbody></table></div>
       <p class="readonly" style="margin:10px 0 0">In the demo, files open as sample documents.</p>
     </section>
@@ -652,9 +750,9 @@ function viewDocuments(){
 
 function viewDecisions(){
   return guide("decisions")+`
-  <div class="page-head"><div><h1>Decisions</h1><p class="sub">Acme's decisions against each finding. A decision never changes an evidence grade.</p></div></div>
+  <div class="page-head"><div><h1>Decisions</h1><p class="sub">The client's decisions against each finding. A decision never changes an evidence grade.</p></div></div>
   <section class="panel">${DECISIONS.map(d=>`<div class="dec"><div class="fkey">${d.id}</div>
-    <div><div style="font-weight:600">${esc(d.text)}</div><div class="ans">Answers ${d.ans}: ${esc(FINDINGS[d.ans].title)} · recorded ${fmt(d.when)} by Acme's enterprise sponsor</div></div>
+    <div><div style="font-weight:600">${esc(d.text)}</div><div class="ans">Answers ${d.ans}: ${esc(FINDINGS[d.ans].title)} · recorded ${fmt(d.when)} by the client's enterprise sponsor</div></div>
     <span class="dstate ds-${d.cls}">${esc(d.state)}</span></div>`).join("")}</section>`;
 }
 
@@ -698,7 +796,7 @@ document.getElementById("reset").addEventListener("click",()=>{guideHidden=false
 const ft = document.getElementById("floattip");
 function showTip(el){
   const s = byId[el.dataset.dot]; if(!s) return;
-  ft.innerHTML = `<b>${esc(s.name)}</b><br><span>${ARCH[s.arch]} · ${esc(s.city)}</span><br>${s.pct}% evidenced · ${lens==="completeness"?{green:"Defensible",amber:"Partial",red:"Thin",grey:"Not assessed"}[band(s)]:assur(s)}<br><span>${s.gaps} open ${s.gaps===1?"gap":"gaps"}${s.sev?" · 1 open "+s.sev+" risk":""}</span>`;
+  ft.innerHTML = `<b>${esc(s.name)}</b><br><span>${ARCH[s.arch]} · ${esc(s.city)}</span><br>Health score ${s.score} · ${s.pct}% evidenced · ${lens==="completeness"?{green:"Defensible",amber:"Partial",red:"Thin",grey:"Not assessed"}[band(s)]:assur(s)}<br><span>${s.gaps} open ${s.gaps===1?"gap":"gaps"}${s.sev?" · 1 open "+s.sev+" risk":""}</span>`;
   ft.style.display="block";
   const r = el.getBoundingClientRect(), w = ft.offsetWidth;
   ft.style.left = Math.max(8,Math.min(window.innerWidth-w-8, r.left + r.width/2 - w/2))+"px";
