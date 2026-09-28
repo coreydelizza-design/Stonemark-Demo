@@ -1,8 +1,8 @@
 # stonemark-demo
 
 The public demo of the Stonemark assurance platform: Acme Corp's client portal for one
-complete, published sample engagement. It is the destination of the **Explore demo**
-button on www.stonemark.ai, and the surface used in sales walkthroughs.
+complete, published sample engagement. It is the destination of the **Try the demo**
+buttons on www.stonemark.ai, and the surface used in sales walkthroughs.
 
 - **Owner:** Stonemark Infrastructure Assurance LLC ([PENDING: entity registration state])
 - **Sibling repos:** `Stonemark_Website` (marketing site), `eldario-platform` (the platform)

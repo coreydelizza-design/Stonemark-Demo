@@ -148,4 +148,4 @@ Expect D0 to take one message. D1, D2 and D3 each take a session. D4 depends on 
 long the delta list is. D5 and D6 are short.
 
 Owner items, outside these steps: the demo.stonemark.ai hostname, the website's
-Explore demo link, and retiring the old /demo route inside the platform repo.
+Try the demo buttons, and retiring the old /demo route inside the platform repo.

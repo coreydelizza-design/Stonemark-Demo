@@ -37,7 +37,7 @@ pack item R9, and `docs/packs/claims-register.md`.
 
 `stonemark-demo` is **the client portal for one complete, published sample
 engagement** — what the client's CIO would see after Stonemark delivered. It is the
-destination of **Explore demo** on the website, and the surface the owner walks a
+destination of the **Try the demo** buttons on the website, and the surface the owner walks a
 prospect through.
 
 It is **not** the operator workspace. No Portfolio, no My work, no console, no intake,
@@ -324,7 +324,7 @@ Branch: `demo/d6-publish`.
   browser. That is the whole of it, and that is the point.
 
 **Owner items, not build steps:** the `demo.stonemark.ai` hostname in Cloudflare and
-Vercel; the website's **Explore demo** button pointing here; retiring the old `/demo`
+Vercel; the website's **Try the demo** buttons pointing here; retiring the old `/demo`
 route inside `stonemark-platform`, which is a change to that repo and outside this pack
 (G2).
 
