@@ -354,22 +354,22 @@ const STOPS = [
   {route:"reports/register",title:"Executive register",what:"Each exposure alongside what the client says an outage of that element would cost.",did:"Used the client's own declared cost ranges, marked as declared, and estimated no probability or likelihood.",look:"The five-site serving-office exposure, and where its cost figure comes from.",keys:["F2"]},
   {route:"reports/board",title:"Board paper",what:"One assertion, three findings, the decisions the board is asked to take, and the cost to close.",did:"Stated exposure, not odds, and declined to present a return calculation.",look:"The decisions table, and the replication finding the board is asked to accept until renewal.",keys:["F6"]},
   {route:"documents",title:"Documents",what:"The Letters of Authorization the client signed, and what each carrier and facility operator produced, partly produced, withheld or left unanswered.",did:"Tracked every records request to its outcome, so each gap has a named reason.",look:"The colocation operator's records request that is still unanswered.",keys:["F4"]},
-  {route:"decisions",title:"Decisions",what:"The client's decisions against each finding: approved, risk accepted, or open.",did:"Recorded each decision against the finding it answers, without changing any evidence grade.",look:"The approved fix at headquarters and the still-open second entrance at the secondary data centre.",keys:["A1","A2"]}
+  {route:"decisions",title:"Decisions",what:"The client's decisions against each finding: approved, risk accepted, or open.",did:"Recorded each decision against the finding it answers, without changing any evidence grade.",look:"The approved fix at headquarters and the still-open second entrance at the secondary data center.",keys:["A1","A2"]}
 ];
 
 /* ---------- the engagement dataset (pack §3, sample data) ---------- */
-const ARCH = ["Data centre","Headquarters","Regional office","Manufacturing plant","Distribution centre","Branch","Contact centre"];
+const ARCH = ["Data center","Headquarters","Regional office","Manufacturing plant","Distribution center","Branch","Contact center"];
 const P="Produced",PT="Partly produced",NR="No response",DC="Declined under contract",CF="Configuration confirmed";
 const sepPair=(a1,a2,e1,e2,pop1,pop2)=>[
   {role:"Primary",carrier:"Corvane Networks",access:a1||"Corvane Networks",medium:"Lit fiber",entrance:e1||"East entrance",pop:pop1||"Corvane metro POP",ev:P},
   {role:"Backup",carrier:"Tessaro Communications",access:a2||"Tessaro Communications",medium:"Lit fiber",entrance:e2||"West entrance",pop:pop2||"Tessaro metro POP",ev:P}];
 const S = [
- {id:"dal",name:"Dallas primary data centre",arch:0,city:"Dallas, TX",pct:88,gaps:1,sev:null,f:["F8","F6"],
+ {id:"dal",name:"Dallas primary data center",arch:0,city:"Dallas, TX",pct:88,gaps:1,sev:null,f:["F8","F6"],
   circuits:sepPair(null,null,"North entrance vault","South entrance vault","Corvane Dallas POP","Tessaro Dallas POP").concat([
   {role:"Replication A",carrier:"Corvane Networks",access:"Corvane Networks",medium:"Wavelength",entrance:"North entrance vault",pop:"Corvane Dallas POP",ev:P},
   {role:"Replication B",carrier:"Pellam Transit",access:"Pellam Transit",medium:"Wavelength",entrance:"South entrance vault",pop:"Route records withheld",ev:DC}]),
   gapList:["Route records for replication B (Pellam Transit)"]},
- {id:"chi",name:"Chicago secondary data centre",arch:0,city:"Chicago, IL",pct:64,gaps:2,sev:"high",f:["F4","F6"],
+ {id:"chi",name:"Chicago secondary data center",arch:0,city:"Chicago, IL",pct:64,gaps:2,sev:"high",f:["F4","F6"],
   circuits:[
    {role:"Primary",carrier:"Corvane Networks",access:"Corvane Networks",medium:"Lit fiber",entrance:"Entrance vault A",pop:"Corvane Chicago POP",ev:P},
    {role:"Backup",carrier:"Tessaro Communications",access:"Tessaro Communications",medium:"Lit fiber",entrance:"Entrance vault A",pop:"Tessaro Chicago POP",ev:P},
@@ -383,8 +383,8 @@ const S = [
  ...["Atlanta","Phoenix","Charlotte"].map((c,i)=>({id:["atl","phx","clt"][i],name:c+" regional office",arch:2,city:[ "Atlanta, GA","Phoenix, AZ","Charlotte, NC"][i],pct:[41,38,45][i],gaps:1,sev:null,f:["F5"],
   circuits:[
    {role:"Primary",carrier:"Tessaro Communications",access:"Tessaro Communications",medium:"Lit fiber",entrance:"Riser B",pop:"Tessaro metro POP",ev:P},
-   {role:"Backup",carrier:"Oriel Fibre",access:"Not in records",medium:"Lit fiber",entrance:"Not in records",pop:"Not in records",ev:NR}],
-  gapList:["Backup circuit records (Oriel Fibre)"]})),
+   {role:"Backup",carrier:"Oriel Fiber",access:"Not in records",medium:"Lit fiber",entrance:"Not in records",pop:"Not in records",ev:NR}],
+  gapList:["Backup circuit records (Oriel Fiber)"]})),
  {id:"tol",name:"Toledo plant",arch:3,city:"Toledo, OH",pct:90,gaps:0,sev:"high",f:["F3"],
   circuits:[
    {role:"Primary",carrier:"Corvane Networks",access:"Corvane Networks",medium:"Lit fiber · cable TOL-114",entrance:"North conduit",pop:"Corvane Toledo POP",ev:P},
@@ -392,12 +392,12 @@ const S = [
  {id:"gsp",name:"Greenville plant",arch:3,city:"Greenville, SC",pct:84,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
  {id:"ict",name:"Wichita plant",arch:3,city:"Wichita, KS",pct:86,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
  {id:"fwa",name:"Fort Wayne plant",arch:3,city:"Fort Wayne, IN",pct:81,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
- ...["North","East","South"].map((n,i)=>({id:"mem"+i,name:"Memphis "+n+" distribution centre",arch:4,city:"Memphis, TN",pct:[85,83,82][i],gaps:0,sev:"critical",f:["F2"],
+ ...["North","East","South"].map((n,i)=>({id:"mem"+i,name:"Memphis "+n+" distribution center",arch:4,city:"Memphis, TN",pct:[85,83,82][i],gaps:0,sev:"critical",f:["F2"],
   circuits:[
    {role:"Primary",carrier:"Tessaro Communications",access:"Northvale Access",medium:"Lit fiber",entrance:"Dock-side entrance",pop:"Northvale Memphis Central serving office",ev:P},
    {role:"Backup",carrier:"Corvane Networks",access:"Northvale Access",medium:"Lit fiber",entrance:"Yard entrance",pop:"Northvale Memphis Central serving office",ev:P}],gapList:[]})),
- {id:"rno",name:"Reno distribution centre",arch:4,city:"Reno, NV",pct:87,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
- {id:"abe",name:"Allentown distribution centre",arch:4,city:"Allentown, PA",pct:89,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
+ {id:"rno",name:"Reno distribution center",arch:4,city:"Reno, NV",pct:87,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
+ {id:"abe",name:"Allentown distribution center",arch:4,city:"Allentown, PA",pct:89,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]},
  ...[["pop","Memphis Poplar Avenue branch","Memphis, TN",58],["sha","Southaven branch","Southaven, MS",55]].map(a=>({id:a[0],name:a[1],arch:5,city:a[2],pct:a[3],gaps:1,sev:"critical",suspected:true,f:["F2"],
   circuits:[
    {role:"Primary",carrier:"Tessaro Communications",access:"Northvale Access",medium:"Lit fiber",entrance:"Street-side entrance",pop:"Northvale Memphis Central serving office",ev:P},
@@ -407,22 +407,22 @@ const S = [
   circuits:[
    {role:"Primary",carrier:"Tessaro Communications",access:"Tessaro Communications",medium:"Lit fiber",entrance:"Main entrance",pop:"Tessaro metro POP",ev:P},
    {role:"Backup",carrier:"Marlow Mobile",access:"Cellular",medium:"LTE",entrance:"Not applicable",pop:"Not assessed: scope is failover and HA configuration only",ev:CF}],gapList:[]})),
- {id:"tpa",name:"Tampa contact centre",arch:6,city:"Tampa, FL",pct:84,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]}
+ {id:"tpa",name:"Tampa contact center",arch:6,city:"Tampa, FL",pct:84,gaps:0,sev:null,f:["F8"],circuits:sepPair(),gapList:[]}
 ];
 
 const FINDINGS = {
  F2:{title:"One serving office under five \u201cdiverse\u201d sites",state:["confirmed","Confirmed at 3 sites · suspected at 2"],sev:"critical",sites:["mem0","mem1","mem2","pop","sha"],basis:"Northvale Access records, partly produced",
-   text:"Every access circuit at the three Memphis-area distribution centres and two branches homes to one Northvale Access serving office. If that office is lost, primary and backup go down together at all five sites."},
+   text:"Every access circuit at the three Memphis-area distribution centers and two branches homes to one Northvale Access serving office. If that office is lost, primary and backup go down together at all five sites."},
  F1:{title:"Two carriers, one access provider at headquarters",state:["confirmed","Confirmed"],sev:"critical",sites:["cmh"],basis:"Tessaro and Corvane layout records",
    text:"The Corvane backup is an off-net tail from Carrow Access, the same access provider as the Tessaro primary. Both circuits enter through basement conduit 1."},
  F3:{title:"Lit and dark fiber in one cable at the Toledo plant",state:["confirmed","Confirmed"],sev:"high",sites:["tol"],basis:"Corvane and Harrow Fiber layout records",
    text:"The dark-fiber backup runs in the same cable as the lit primary, from the plant to the first splice point."},
- F4:{title:"Single entrance at the secondary data centre",state:["suspected","Suspected"],sev:"high",sites:["chi"],basis:"Carrier records; facility records outstanding",
+ F4:{title:"Single entrance at the secondary data center",state:["suspected","Suspected"],sev:"high",sites:["chi"],basis:"Carrier records; facility records outstanding",
    text:"Carrier records show both carriers entering the Ashby Colocation facility through one entrance vault. The facility's second entrance was never ordered. Ashby has not answered the records request."},
  F6:{title:"Replication diversity cannot be established",state:["cannot","Cannot be established"],sev:null,sites:["dal","chi"],basis:"Corvane produced; Pellam Transit declined under contract",
    text:"Corvane Networks produced route records for its replication wavelength. Pellam Transit declined to produce route records under its contract terms. Whether the two replication paths are diverse cannot be established until that agreement renews. This finding does not say the paths converge."},
- F5:{title:"Carrier consolidation at the regional offices",state:["unverified","Unverified"],sev:null,sites:["atl","phx","clt"],basis:"Oriel Fibre has not responded",
-   text:"Primary and backup were ordered from Tessaro Communications and Oriel Fibre, which have since combined through acquisition. Whether Oriel's metro network has been folded into Tessaro's is not yet known."},
+ F5:{title:"Carrier consolidation at the regional offices",state:["unverified","Unverified"],sev:null,sites:["atl","phx","clt"],basis:"Oriel Fiber has not responded",
+   text:"Primary and backup were ordered from Tessaro Communications and Oriel Fiber, which have since combined through acquisition. Whether Oriel's metro network has been folded into Tessaro's is not yet known."},
  F7:{title:"LTE failover and HA configuration confirmed",state:["clear","Configuration confirmed"],sev:null,sites:["tul","oma","boi","alb"],basis:"The client's configuration records",
    text:"The client's configuration records confirm the LTE backup is set to take over and high availability is configured. The scope is confirmation only: the engagement makes no claim about whether the cellular path is physically diverse."},
  F8:{title:"Assessed clear",state:["clear","Assessed clear"],sev:null,sites:["dal","gsp","ict","fwa","rno","abe","tpa"],basis:"Carrier layout records",
@@ -438,14 +438,14 @@ const DECISIONS = [
 ];
 
 const REQUESTS = [
- {who:"Corvane Networks",scope:"Access and transit",covers:"Data centres, plants, distribution centres, headquarters backup",d:"produced",label:P},
- {who:"Tessaro Communications",scope:"Access",covers:"Headquarters primary, regional offices, branches, data centres",d:"produced",label:P},
+ {who:"Corvane Networks",scope:"Access and transit",covers:"Data centers, plants, distribution centers, headquarters backup",d:"produced",label:P},
+ {who:"Tessaro Communications",scope:"Access",covers:"Headquarters primary, regional offices, branches, data centers",d:"produced",label:P},
  {who:"Carrow Access",scope:"Access",covers:"Columbus headquarters",d:"produced",label:P},
  {who:"Harrow Fiber",scope:"Access",covers:"Toledo plant backup",d:"produced",label:P},
  {who:"Northvale Access",scope:"Access",covers:"Five Memphis-area sites",d:"partial",label:"Partly produced (3 of 5 sites)"},
- {who:"Oriel Fibre",scope:"Access and transit",covers:"Regional offices backup",d:"noresp",label:NR},
- {who:"Ashby Colocation",scope:"Facility",covers:"Chicago secondary data centre",d:"noresp",label:NR},
- {who:"Pellam Transit",scope:"Transit route records",covers:"Data-centre replication B",d:"declined",label:DC}
+ {who:"Oriel Fiber",scope:"Access and transit",covers:"Regional offices backup",d:"noresp",label:NR},
+ {who:"Ashby Colocation",scope:"Facility",covers:"Chicago secondary data center",d:"noresp",label:NR},
+ {who:"Pellam Transit",scope:"Transit route records",covers:"Data-center replication B",d:"declined",label:DC}
 ];
 
 /* ---------- derived (the build computes these in domain functions) ---------- */
@@ -541,7 +541,7 @@ function viewStatus(){
 
   <section class="headline" aria-label="Headline finding">
     <div><div class="lbl">The finding, in one sentence</div>
-    <p>Contracted diversity fails at four of the client's sites on documented evidence and is suspected at two more. The diversity of data-centre replication cannot be established from the records available.</p></div>
+    <p>Contracted diversity fails at four of the client's sites on documented evidence and is suspected at two more. The diversity of data-center replication cannot be established from the records available.</p></div>
     <button class="linkbtn" type="button" data-go="reports/board">Read the board paper</button>
   </section>
 
@@ -575,7 +575,7 @@ function viewStatus(){
     <section class="panel" aria-label="Largest exposures">
       <div class="panel-head"><h2>Largest exposures</h2><button class="linkbtn" type="button" data-go="reports/register">Executive register</button></div>
       <ul class="rowlist">${exposures.map(r=>{const f=FINDINGS[r.k];return `<li><button class="rowbtn" type="button" data-go="findings">
-        <span class="rname">${esc(f.title)}</span><span class="score" style="text-align:right;display:block"><span class="money" style="font-weight:600">${esc(r.cost.replace(" while the primary data centre is up",""))}</span><span class="declared">Declared by the client</span></span>
+        <span class="rname">${esc(f.title)}</span><span class="score" style="text-align:right;display:block"><span class="money" style="font-weight:600">${esc(r.cost.replace(" while the primary data center is up",""))}</span><span class="declared">Declared by the client</span></span>
         <span class="rwhy">${esc(r.cond)}</span></button></li>`}).join("")}</ul>
       <p class="readonly" style="margin:8px 0 0">What each loss would cost if it happened. No likelihood is estimated.</p>
     </section>
@@ -625,7 +625,7 @@ function matrix(avg){
 function viewSites(){
   const sorted = S.slice().sort((a,b)=>({red:0,amber:1,green:2,grey:3}[band(a)]-{red:0,amber:1,green:2,grey:3}[band(b)])||a.arch-b.arch);
   return guide("sites")+`
-  <div class="page-head"><div><h1>Sites</h1><p class="sub">${S.length} sites, as published on ${fmt(PUB)}. Colour shows how much is proven, not how risky a site is; risk is the chip.</p></div><span class="readonly">Read-only</span></div>
+  <div class="page-head"><div><h1>Sites</h1><p class="sub">${S.length} sites, as published on ${fmt(PUB)}. Color shows how much is proven, not how risky a site is; risk is the chip.</p></div><span class="readonly">Read-only</span></div>
   <div class="cards">${sorted.map(card).join("")}</div>`;
 }
 
@@ -682,7 +682,7 @@ const REGISTER = [
  {k:"F2",cond:"If the Northvale Memphis Central serving office is lost",cost:"$210k–$340k per day",close:null,closeNote:"Not computable: review open (A4)"},
  {k:"F1",cond:"If basement conduit 1 or Carrow Access's local plant is lost",cost:"$60k–$95k per day",close:"$40k–$55k",closeNote:"Declared by the client (A1 approved)"},
  {k:"F3",cond:"If cable TOL-114 is cut before splice point SP-04",cost:"$45k–$70k per day",close:null,closeNote:"Not computable: no decision recorded"},
- {k:"F4",cond:"If entrance vault A is lost",cost:"$15k–$30k per day while the primary data centre is up",close:null,closeNote:"Not computable: quote pending (A2)"},
+ {k:"F4",cond:"If entrance vault A is lost",cost:"$15k–$30k per day while the primary data center is up",close:null,closeNote:"Not computable: quote pending (A2)"},
  {k:"F6",cond:"If replication is lost",cost:null,costNote:"Not computable: no cost declared",close:null,closeNote:"Risk accepted until renewal (A3)"},
  {k:"F5",cond:"If a consolidated metro network is lost",cost:null,costNote:"Not computable: no inputs declared",close:null,closeNote:"Not computable"}
 ];
@@ -710,10 +710,10 @@ function boardPaper(){
     <div class="mast">Board paper · Network diversity assurance · sample engagement, North American manufacturer · prepared by Stonemark Infrastructure Assurance · published ${fmt(PUB)}</div>
     <h2>Contracted network diversity</h2>
     <h3>Assertion</h3>
-    <p class="assertion">Contracted diversity fails at four of the client's sites on documented evidence and is suspected at two more. The diversity of data-centre replication cannot be established from the records available.</p>
+    <p class="assertion">Contracted diversity fails at four of the client's sites on documented evidence and is suspected at two more. The diversity of data-center replication cannot be established from the records available.</p>
     <h3>Findings</h3>
     <ol>
-      <li><b>One serving office under five sites.</b> Three Memphis distribution centres (confirmed) and two Memphis-area branches (suspected) take both their primary and backup access through one Northvale Access serving office. If that office is lost, all five lose connectivity together. The client declares the cost at $210k–$340k per day.</li>
+      <li><b>One serving office under five sites.</b> Three Memphis distribution centers (confirmed) and two Memphis-area branches (suspected) take both their primary and backup access through one Northvale Access serving office. If that office is lost, all five lose connectivity together. The client declares the cost at $210k–$340k per day.</li>
       <li><b>Two carriers, one access provider at headquarters.</b> The backup carrier reaches the building over the same access provider and the same conduit as the primary. Confirmed. The client declares the cost at $60k–$95k per day.</li>
       <li><b>Replication diversity cannot be established.</b> One replication carrier declined to produce route records under its contract. Until that agreement renews, no one can show whether the two replication paths are diverse. This is a ceiling on what can be proven, not a finding that the paths converge.</li>
     </ol>
@@ -722,7 +722,7 @@ function boardPaper(){
       ${DECISIONS.map(d=>`<tr><td class="key" style="margin:0">${d.id}</td><td>${esc(d.text)}</td><td>${d.ans}</td><td><span class="dstate ds-${d.cls}">${esc(d.state)}</span></td></tr>`).join("")}
     </tbody></table></div>
     <h3>Cost to close</h3>
-    <p>At least $40k–$55k, declared by the client for headquarters. The Memphis serving office, the Toledo plant and the secondary data centre's entrance are not yet computable.</p>
+    <p>At least $40k–$55k, declared by the client for headquarters. The Memphis serving office, the Toledo plant and the secondary data center's entrance are not yet computable.</p>
     <h3>Why this paper presents no return on investment</h3>
     <p>A return figure needs the probability of each failure, and the evidence does not support one. The exposures above are stated as what a loss would cost if it happened.</p>
     <p class="foot">Sample data. Costs are the client's declared ranges.</p>
@@ -746,8 +746,8 @@ function viewDocuments(){
       <div class="tscroll"><table><thead><tr><th>File</th><th>Source</th></tr></thead><tbody>
         <tr><td>Circuit layout records, headquarters</td><td>Tessaro, Corvane</td></tr>
         <tr><td>Circuit layout records, Toledo plant</td><td>Corvane, Harrow Fiber</td></tr>
-        <tr><td>Access records, Memphis distribution centres</td><td>Northvale Access</td></tr>
-        <tr><td>Carrier entrance records, Chicago secondary data centre</td><td>Corvane, Tessaro</td></tr>
+        <tr><td>Access records, Memphis distribution centers</td><td>Northvale Access</td></tr>
+        <tr><td>Carrier entrance records, Chicago secondary data center</td><td>Corvane, Tessaro</td></tr>
         <tr><td>Replication route records, wavelength A</td><td>Corvane Networks</td></tr>
         <tr><td>SD-WAN HA and LTE failover configuration export</td><td>The client</td></tr>
       </tbody></table></div>
