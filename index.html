@@ -511,7 +511,7 @@ const glyph = b=>{const n={green:3,amber:2,red:1,grey:0}[b];
 
 function card(s){
   const b=band(s);
-  return `<button class="card b-${b}" type="button" data-go="site/${s.id}" aria-label="${esc(s.name)}, ${s.pct}% evidenced, ${s.gaps} open gaps${s.sev?", 1 "+s.sev+" risk":""}">
+  return `<button class="card b-${b}" type="button" data-go="site/${s.id}" aria-label="${esc(s.name)}, ${s.pct}% evidenced, ${s.gaps} open gap${s.gaps===1?"":"s"}${s.sev?", 1 "+s.sev+" risk":""}">
     <span class="card-top"><span class="pill">${statePill(s)}</span><span class="gapcount"><b>${s.gaps}</b>open ${s.gaps===1?"gap":"gaps"}</span></span>
     <span class="card-name">${esc(s.name)}</span>
     <span class="arch">${ARCH[s.arch]}</span>
@@ -537,7 +537,7 @@ function viewStatus(){
   const recCounts = [["produced","Produced","var(--green)"],["partial","Partly produced","var(--amber)"],["noresp","No response","var(--muted)"],["declined","Declined under contract","var(--red)"]]
      .map(([d,l,c])=>[d,l,c,REQUESTS.filter(r=>r.d===d)]).filter(x=>x[3].length);
   return guide("status")+`
-  <div class="page-head"><div><h1>Executive dashboard</h1><p class="sub">A North American manufacturer, 22 sites. Assurance as published on ${fmt(PUB)}. A photograph of that date: nothing here changes until Stonemark publishes again.</p></div></div>
+  <div class="page-head"><div><h1>Executive dashboard</h1><p class="sub">A North American manufacturer, 22 sites. Assurance as published on ${fmt(PUB)}. Nothing here changes until Stonemark publishes again.</p></div></div>
 
   <section class="headline" aria-label="Headline finding">
     <div><div class="lbl">The finding, in one sentence</div>
@@ -614,7 +614,7 @@ function matrix(avg){
      <span class="asat">Point-in-time ${lens==="completeness"?"evidence completeness":"assurance"} · as at ${fmt(PUB)}</span>
    </div>
    ${rows.map(r=>`<div class="mrow"><div class="mlabel">${r.a}</div><div class="dots" role="group" aria-label="${r.a}">${r.sites.map(s=>{const d=dotStyle(s);const faded=legendFilter&&key(s)!==legendFilter;
-      return `<button type="button" class="dot ${d.cls} ${s.sev?"ring":""} ${faded?"faded":""}" style="background-color:${d.bg}" data-go="site/${s.id}" data-dot="${s.id}" aria-label="${esc(s.name)}, ${ARCH[s.arch]}, ${s.pct}% evidenced, ${lens==="completeness"?defs.find(x=>x[0]===band(s))[1]:assur(s)}, ${s.gaps} open gaps${s.sev?", 1 open "+s.sev+" risk":""}"></button>`}).join("")}</div></div>`).join("")}
+      return `<button type="button" class="dot ${d.cls} ${s.sev?"ring":""} ${faded?"faded":""}" style="background-color:${d.bg}" data-go="site/${s.id}" data-dot="${s.id}" aria-label="${esc(s.name)}, ${ARCH[s.arch]}, ${s.pct}% evidenced, ${lens==="completeness"?defs.find(x=>x[0]===band(s))[1]:assur(s)}, ${s.gaps} open gap${s.gaps===1?"":"s"}${s.sev?", 1 open "+s.sev+" risk":""}"></button>`}).join("")}</div></div>`).join("")}
    <div class="legend">
      ${defs.filter(d=>counts[d[0]]>0).map(d=>`<button type="button" class="lg" data-legend="${d[0]}" aria-pressed="${legendFilter===d[0]}"><i class="${d[3]||""} ${d[3]==="hollow"?"dot hollow":""}" style="background-color:${d[2]}"></i>${d[1]} ${counts[d[0]]}</button>`).join("")}
      <span class="ringkey"><i></i>Open critical or high risk</span>
