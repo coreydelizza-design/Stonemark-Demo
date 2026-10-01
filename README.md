@@ -1,16 +1,18 @@
 # stonemark-demo
 
-The public demo of the Stonemark assurance platform: Acme Corp's client portal for one
-complete, published sample engagement. It is the destination of the **Try the demo**
-buttons on www.stonemark.ai, and the surface used in sales walkthroughs.
+The public **sample engagement** of the Stonemark assurance platform: Acme Corp's client
+portal for one complete, published engagement on synthetic data. It is the destination of
+the **Explore a sample engagement** buttons on www.stonemark.ai, and the surface used in
+sales walkthroughs. (The repository and the demo.stonemark.ai address keep the earlier
+"demo" name; visitors see "sample engagement".)
 
 - **Owner:** Stonemark Infrastructure Assurance LLC ([PENDING: entity registration state])
-- **Sibling repos:** `Stonemark_Website` (marketing site), `eldario-platform` (the platform)
+- **Sibling repos:** `Stonemark_Website` (marketing site), `stonemark-platform` (the platform)
 - **Build pack:** `docs/packs/demo-buildout.md` · **Runner:** `docs/packs/demo-runner.md`
 
 ## What this repo contains
 
-The demo runs entirely in the visitor's browser. It holds no database connection, no
+The sample engagement runs entirely in the visitor's browser. It holds no database connection, no
 credentials, and no client data. Every figure, site, carrier and finding in it is
 synthetic. See `DEMO_DATA_NOTICE.md`, which is a condition of this repo, not a
 suggestion.
@@ -21,7 +23,7 @@ This is **proprietary, unlicensed source**. Publishing a repository does not lic
 see `LICENSE` and `NOTICE.md`. The assurance method — the provenance ladder, the scoring
 model and its caps, the reconciliation rules, the archetype-to-requirement mappings — is
 held as a **trade secret** and is deliberately not reproduced in this repo. Anything in
-here that reveals the method beyond what the demo shows on screen is a defect; open it as
+here that reveals the method beyond what the sample engagement shows on screen is a defect; open it as
 an issue rather than fixing it in public.
 
 ## Before anyone but the owner commits
