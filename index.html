@@ -190,17 +190,20 @@ h1{font-size:24px;line-height:1.2;margin:0;font-weight:600;letter-spacing:-.01em
 
 /* site cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.card{text-align:left;background:var(--t-grey);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:12px;padding:13px 14px 12px;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-height:168px;position:relative}
+.card{text-align:left;background:var(--t-grey);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:12px;padding:13px 14px 12px;cursor:pointer;display:flex;flex-direction:column;gap:6px;position:relative}
 .card:hover{border-color:var(--muted)}
 .card.b-green{background:var(--t-green);border-left-color:var(--green)}
 .card.b-amber{background:var(--t-amber);border-left-color:var(--amber)}
 .card.b-red{background:var(--t-red);border-left-color:var(--red)}
-.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card-id{display:flex;flex-direction:column;gap:2px;min-width:0}
+.card-sub{font-size:12.5px;color:var(--muted)}
+.card-sub .nw{white-space:nowrap}
 .pill{font-size:12px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:1px 8px;color:var(--muted);white-space:nowrap}
 .gapcount{font-size:12.5px;color:var(--muted);white-space:nowrap}
 .gapcount b{font-size:17px;color:var(--ink);font-weight:600;margin-right:3px;font-variant-numeric:tabular-nums}
-.card-name{font-weight:600;font-size:15.5px;line-height:1.3}
 .arch{align-self:flex-start;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 6px;background:var(--surface)}
+.card-name{font-weight:600;font-size:15.5px;line-height:1.3}
 .desc{font-size:13px;color:var(--muted)}
 .card-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;padding-top:6px}
 .card-foot .pct{font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -513,11 +516,14 @@ const glyph = b=>{const n={green:3,amber:2,red:1,grey:0}[b];
 
 function card(s){
   const b=band(s);
-  return `<button class="card b-${b}" type="button" data-go="site/${s.id}" aria-label="${esc(s.name)}, ${s.pct}% evidenced, ${s.gaps} open gap${s.gaps===1?"":"s"}${s.sev?", 1 "+s.sev+" risk":""}">
-    <span class="card-top"><span class="pill">${statePill(s)}</span><span class="gapcount"><b>${s.gaps}</b>open ${s.gaps===1?"gap":"gaps"}</span></span>
-    <span class="card-name">${esc(s.name)}</span>
-    <span class="arch">${ARCH[s.arch]}</span>
-    <span class="desc">${esc(s.city)} · ${esc(carriersOf(s))} · ${s.circuits.length} circuits</span>
+  // Three rows, as in the app (UI_LOCK A31): name with type, then open gaps; facts; evidence.
+  // "In assessment" is not shown; "Not assessed" takes the gap count's place.
+  const sub = ARCH[s.arch]+(b==="green"?" · Attested "+fmtShort(PUB):"");
+  const subHtml = esc(ARCH[s.arch])+(b==="green"?` · <span class="nw">Attested ${esc(fmtShort(PUB))}</span>`:"");
+  const facts = [s.city, carriersOf(s), s.circuits.length?s.circuits.length+" circuit"+(s.circuits.length===1?"":"s"):""].filter(Boolean).map(esc).join(" · ");
+  return `<button class="card b-${b}" type="button" data-go="site/${s.id}" aria-label="${esc(s.name)}, ${esc(sub)}, ${b==="grey"?"not assessed":s.pct+"% evidenced, "+s.gaps+" open gap"+(s.gaps===1?"":"s")}${s.sev?", 1 "+s.sev+" risk":""}">
+    <span class="card-top"><span class="card-id"><span class="card-name">${esc(s.name)}</span><span class="card-sub">${subHtml}</span></span>${b==="grey"?`<span class="pill">Not assessed</span>`:`<span class="gapcount"><b>${s.gaps}</b>open ${s.gaps===1?"gap":"gaps"}</span>`}</span>
+    <span class="desc">${facts}</span>
     <span class="card-foot"><span class="pct">${s.pct}% evidenced</span>${s.sev?`<span class="sev sev-${s.sev}">1 ${s.sev}${s.suspected?" (suspected)":""}</span>`:glyph(b)}</span>
   </button>`;
 }
