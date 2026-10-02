@@ -7,7 +7,7 @@ wrong.
 
 | # | Token | File | Who resolves it |
 |---|---|---|---|
-| 1 | Entity registration status and state of formation | `README.md`, `NOTICE.md`, `CHAIN_OF_TITLE.md` | Owner, with counsel |
+| 1 | ~~Entity registration status and state of formation~~ Done 2026-10-02: Wyoming LLC | `README.md`, `NOTICE.md`, `CHAIN_OF_TITLE.md` | Owner, with counsel |
 | 2 | Registered address | `LICENSE` | Owner |
 | 3 | Legal contact email | `LICENSE`, `DEMO_TERMS.md` | Owner |
 | 4 | Security contact email | `SECURITY.md` | Owner |
@@ -16,7 +16,7 @@ wrong.
 | 7 | What the host logs, in one sentence | `DEMO_TERMS.md` | Owner, then counsel |
 | 8 | Dependency and font notice rows | `THIRD_PARTY_NOTICES.md` | Whoever adds the first dependency |
 | 9 | Full OFL text per font family | `THIRD_PARTY_NOTICES.md` | Whoever commits the font files |
-| 10 | Founder IP assignment executed | `CHAIN_OF_TITLE.md` | Counsel |
+| 10 | ~~Founder IP assignment executed~~ Done 2026-10-02: signed | `CHAIN_OF_TITLE.md` | Counsel |
 | 11 | Confirmatory assignments for earlier codebase work | `CHAIN_OF_TITLE.md` | Counsel |
 | 12 | Trade secret policy first review date | `TRADE_SECRET_POLICY.md` | Owner |
 

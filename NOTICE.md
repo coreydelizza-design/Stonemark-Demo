@@ -36,7 +36,8 @@ added, as `© 2026–2027`.
 
 ## Status of the entity line
 
-The entity is Stonemark Infrastructure Assurance LLC. Its registration status is carried
-as `[PENDING]` in the platform's `brand.ts` and footers until confirmed. Do not print a
-registration number, state of formation or address anywhere in this repo until
-`docs/ip/PLACEHOLDERS.md` records it as confirmed.
+The entity is Stonemark Infrastructure Assurance LLC, a Wyoming limited liability
+company, and it owns the platform, the method, the marks and this repo (owner-confirmed
+2026-10-02; see `docs/ip/CHAIN_OF_TITLE.md`). The registration number and registered
+address are still not printed here: do not add either until `docs/ip/PLACEHOLDERS.md`
+records it.

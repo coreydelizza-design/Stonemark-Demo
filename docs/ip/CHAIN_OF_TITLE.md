@@ -8,8 +8,8 @@ time to fix one is now.
 
 | Item | Status | Date | Note |
 |---|---|---|---|
-| Entity formed: Stonemark Infrastructure Assurance LLC | [PENDING: confirm registration] | | Held as `PENDING` in `brand.ts` and footers until confirmed |
-| Founder IP assignment to the entity, covering all pre-formation work | [PENDING — with counsel] | | Covers the platform, the method, the marks and this repo |
+| Entity formed: Stonemark Infrastructure Assurance LLC | Done: Wyoming limited liability company | Confirmed by the owner 2026-10-02 (formation date not recorded here) | The platform's `brand.ts` and footers carry the full name |
+| Founder IP assignment to the entity, covering all pre-formation work | Done: signed | Confirmed by the owner 2026-10-02 (signing date not recorded here) | Covers the platform, the method, the marks and this repo. The signed original is kept by the owner, not in this repo |
 | Confirmatory assignment from anyone who touched the earlier IDA / Eldario codebase | [PENDING — with counsel] | | Past developers, contractors, coding agents |
 
 ## 2. Contributors

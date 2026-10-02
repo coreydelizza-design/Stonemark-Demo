@@ -7,10 +7,11 @@ question, not a draft to rubber-stamp.
 ## Ask first, before any outreach or contractor
 
 1. **Entity and conversion.** Does the LLC stay an LLC, or convert to a Delaware C-corp
-   if outside money is ever raised? Confirm the registration status that is currently
-   held as `PENDING` in the platform footer.
-2. **Founder IP assignment.** Get the entity to own everything created before formation:
-   the platform, the method, the marks, the datasets, this repo.
+   if outside money is ever raised? (Formed as a Wyoming LLC; owner-confirmed
+   2026-10-02.)
+2. **Founder IP assignment.** Done: signed (owner-confirmed 2026-10-02). The entity owns
+   everything created before formation: the platform, the method, the marks, the
+   datasets, this repo.
 3. **Confirmatory assignments.** Anyone who touched the earlier IDA or Eldario codebase.
 4. **Contractor stack.** Independent Contractor Agreement, present-tense IP assignment,
    NDA, non-circumvention and non-solicitation. Signed before access, not after.

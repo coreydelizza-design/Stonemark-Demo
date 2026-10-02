@@ -6,7 +6,7 @@ the **Explore a sample engagement** buttons on www.stonemark.ai, and the surface
 sales walkthroughs. (The repository and the demo.stonemark.ai address keep the earlier
 "demo" name; visitors see "sample engagement".)
 
-- **Owner:** Stonemark Infrastructure Assurance LLC ([PENDING: entity registration state])
+- **Owner:** Stonemark Infrastructure Assurance LLC, a Wyoming limited liability company
 - **Sibling repos:** `Stonemark_Website` (marketing site), `stonemark-platform` (the platform)
 - **Build pack:** `docs/packs/demo-buildout.md` · **Runner:** `docs/packs/demo-runner.md`
 
